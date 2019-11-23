@@ -350,12 +350,12 @@ status ListMerger(LinkList &La, LinkList &Lb, LinkList &Lc)
 		printf("*The LinearList do not exist\n");
 		return ERROR;
 	}
-	Lc->data = La->data + Lb->data;
+	Lc->data = La->data + Lb->data;//compute length
 	LinkList temp,pos,semp_a,semp_b;
 	pos = Lc;
 	semp_a = La->next;
 	semp_b = Lb->next;
-	for (int i = 0; i < La->data; i++)
+	for (int i = 0; i < La->data; i++)//call for space
 	{
 		temp = (LinkList)malloc(sizeof(LNode));
 		if (temp == NULL)
@@ -369,7 +369,7 @@ status ListMerger(LinkList &La, LinkList &Lb, LinkList &Lc)
 		pos = pos->next;
 		semp_a = semp_a->next;
 	}
-	for (int i = 0; i < Lb->data; i++)
+	for (int i = 0; i < Lb->data; i++)//add element
 	{
 		temp = (LinkList)malloc(sizeof(LNode));
 		if (temp == NULL)
@@ -384,7 +384,7 @@ status ListMerger(LinkList &La, LinkList &Lb, LinkList &Lc)
 		semp_b = semp_b->next;
 	}
 	printf("*ListMerge Success\n");
-	if (ListSort(Lc) == OK)
+	if (ListSort(Lc) == OK)//ListSort
 		return OK;
 	else
 		return ERROR;

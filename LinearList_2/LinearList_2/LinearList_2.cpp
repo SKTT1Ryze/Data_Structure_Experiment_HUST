@@ -61,11 +61,11 @@ int main(int argc,char *argv[])
 		printf("-------------------------------------------------\n");
 		printf("    	  1. InitList       7. LocateElem\n");
 		printf("    	  2. DestroyList    8. PriorElem\n");
-		printf("    	  3. ClearList       9. NextElem \n");
-		printf("    	  4. ListEmpty     10. ListInsert\n");
+		printf("    	  3. ClearList      9. NextElem \n");
+		printf("    	  4. ListEmpty      10. ListInsert\n");
 		printf("    	  5. ListLength     11. ListDelete\n");
-		printf("    	  6. GetElem       12. ListTrabverse\n");
-		printf("    	  13.save           14.load\n");
+		printf("    	  6. GetElem        12. ListTrabverse\n");
+		printf("    	  13.save           14.load\n");	
 		printf("    	  15.ListSet        16. ChangeList\n");
 		printf("          17.ListMerge      0. Exit\n");
 		printf("-------------------------------------------------\n");
@@ -292,7 +292,7 @@ int main(int argc,char *argv[])
 				}
 				//save
 				printf("*FileName:");
-				scanf_s("%s", writeFileName,sizeof(writeFileName));
+				scanf_s("%s", writeFileName,sizeof(writeFileName));//input filename
 				if ((fp = fopen(writeFileName, "wb")) == NULL)
 				{
 					printf("*File open error\n ");
@@ -328,7 +328,7 @@ int main(int argc,char *argv[])
 				}
 				//read
 				printf("*FileName:");
-				scanf_s("%s", readFileName,sizeof(readFileName));
+				scanf_s("%s", readFileName,sizeof(readFileName));//input filename
 				if ((fp = fopen(readFileName, "rb")) == NULL)
 				{
 					printf("*File open error\n ");
@@ -339,7 +339,7 @@ int main(int argc,char *argv[])
 				temp = *L;
 				fread(&temp->data, sizeof(ElemType), 1, fp);
 				j = temp->data;
-				while (j > 0)
+				while (j > 0)//call for space
 				{
 					semp = (LinkList)malloc(sizeof(LNode));
 					if (semp == NULL)
@@ -354,7 +354,7 @@ int main(int argc,char *argv[])
 				}
 				temp = (*L)->next;
 				j = (*L)->data;
-				while (j > 0&&temp)
+				while (j > 0&&temp)//read all element
 				{
 					fread(&temp->data, sizeof(ElemType), 1, fp);
 					temp = temp->next;
@@ -408,6 +408,7 @@ int main(int argc,char *argv[])
 				printf(" *Use:merge two LinearList as new one\n*/\n");
 				printf("*index of La:");
 				scanf_s("%d", &index_a);
+				//error alarm
 				if (index_a<0 || index_a>ListNumber - 1)
 				{
 					printf("OVERFLOW");
@@ -433,6 +434,7 @@ int main(int argc,char *argv[])
 					getchar();
 					break;
 				}
+				//Merge and Sort
 				if (ListMerger(ListGroup[index_a], ListGroup[index_b], ListGroup[index_c]) == OK)
 					printf("*ListMerge and ListSort Success\n");
 				getchar();

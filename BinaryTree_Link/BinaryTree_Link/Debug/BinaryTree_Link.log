@@ -1,0 +1,19 @@
+﻿  pch.cpp
+  BinaryTree_Link.cpp
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(12): warning C4005: “OVERFLOW”: 宏重定义
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\corecrt_math.h(966): note: 参见“OVERFLOW”的前一个定义
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(82): warning C4715: “CreateBiTree”: 不是所有的控件路径都返回值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(87): error C4716: “DestroyBiTree”: 必须返回一个值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(93): error C4716: “ClearBiTree”: 必须返回一个值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(98): error C4716: “BiTreeEmpty”: 必须返回一个值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(103): error C4716: “BiTreeDepth”: 必须返回一个值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(108): error C4716: “LocateNode”: 必须返回一个值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(113): error C4716: “Assign”: 必须返回一个值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(118): error C4716: “GetSibling”: 必须返回一个值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(123): error C4716: “InsertNode”: 必须返回一个值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(128): error C4716: “DeleteNode”: 必须返回一个值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(138): error C4716: “InOrderTraverse”: 必须返回一个值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(143): error C4716: “PostOrderTraverse”: 必须返回一个值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(133): error C4716: “PreOrderTraverse”: 必须返回一个值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(148): error C4716: “LevelOrderTraverse”: 必须返回一个值
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.cpp(34): error C4700: 使用了未初始化的局部变量“index”

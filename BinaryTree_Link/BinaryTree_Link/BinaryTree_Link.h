@@ -25,7 +25,6 @@ typedef struct BinaryTree
 	int id;//ID of BITree
 	int size;//numbers of Nodes
 	struct BiTNode *root;//root of BiTree
-	struct BinaryTree *next;//next BiTree
 }BinaryTree, *BinaryTreePos;
 
 
@@ -42,7 +41,7 @@ status CreateBiTree(BinaryTreePos&T, int definition);
 status DestroyBiTree(BinaryTreePos&T);
 status ClearBiTree(BinaryTreePos&T);
 status BiTreeEmpty(BinaryTreePos&T);
-int BiTreeDepth(BinaryTreePos&T);
+int BiTreeDepth(BiTPos&root);
 BiTPos LocateNode(BinaryTreePos&T, KeyType e);
 status Assign(BinaryTreePos&T, KeyType e, ElemType value);
 BiTPos GetSibling(BinaryTreePos&T, KeyType e);
@@ -51,10 +50,12 @@ status DeleteNode(BinaryTreePos&T, KeyType e);
 status PreOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 status InOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 status PostOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
-status LevelOrderTraverse(BinaryTreePos&T, void(*visit)(BiTPos&node));
+status LevelOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 BiTPos CreateBiTree1(int* pre_start, int* pre_end, int* in_start, int* in_end, int&size);
 BiTPos CreateBiTree2(int* post_start, int* post_end, int* in_start, int* in_end, int&size);
 void CreateBiTree3(BiTPos&root, int&size);
+void Destroy(BiTPos&root);
+status visit(BiTPos&node);
 
 status CreateBiTree(BinaryTreePos&T, int definition)
 {
@@ -235,7 +236,7 @@ status DestroyBiTree(BinaryTreePos&T)
 
 status ClearBiTree(BinaryTreePos&T)
 {
-
+	return;
 
 }
 
@@ -261,27 +262,27 @@ int BiTreeDepth(BiTPos&root)
 
 BiTPos LocateNode(BinaryTreePos&T, KeyType e)
 {
-
+	return ;
 }
 
 status Assign(BinaryTreePos&T, KeyType e, ElemType value)
 {
-
+	return ;
 }
 
 BiTPos GetSibling(BinaryTreePos&T, KeyType e)
 {
-
+	return;
 }
 
 status InsertNode(BinaryTreePos&T, KeyType e, int LR, BiTPos&c)
 {
-
+	return ;
 }
 
 status DeleteNode(BinaryTreePos&T, KeyType e)
 {
-
+	return ;
 }
 
 status PreOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node))
@@ -345,7 +346,8 @@ status PostOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node))
 	}
 	BiTPos t = T->root;
 	BiTPos St[MaxSize], pre;
-	int flag, top = 0;
+	int flag = 0;
+	int top = 0;
 	do
 	{
 		while (t != NULL)
@@ -375,9 +377,41 @@ status PostOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node))
 	return OK;
 }
 
-status LevelOrderTraverse(BinaryTreePos&T, void(*visit)(BiTPos&node))
+status LevelOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node))
 {
-
+	if (T->root == NULL)
+	{
+		printf("*The BiTree si NULL\n");
+		return ERROR;
+	}
+	BiTPos t = T->root;
+	BiTPos temp = NULL;//use for store
+	BiTPos Sq[MaxSize];
+	int rear = 0;
+	int front = 0;
+	Sq[front++] = t;//root enqueue
+	while (rear != front)
+	{
+		if (front >= MaxOrder)
+		{
+			printf("*OVERFLOW\n");
+			exit(OVERFLOW);
+		}
+		temp = Sq[front - 1];
+		if (!visit(t))return ERROR;//visit
+		if (temp->index != NULL)//lchild is not null,enqueue
+		{
+			Sq[front++] = temp->lchild;//lchild enqueue
+			printf("*lchild enqueue\n");
+		}
+		if (temp->rchild != NULL)
+		{
+			Sq[front++] = temp->rchild;//rchild enqueue
+			printf("*rchild enqueue\n");
+		}
+	}
+	printf("*LevelOrderTraverse Success\n");
+	return OK;
 }
 
 BiTPos CreateBiTree1(int* pre_start, int* pre_end, int* in_start, int* in_end,int&size)
@@ -393,6 +427,7 @@ BiTPos CreateBiTree1(int* pre_start, int* pre_end, int* in_start, int* in_end,in
 	root->lchild = NULL;
 	root->rchild = NULL;
 	root->index = root_value;
+	root->value = 'N';
 	size++;
 
 	//如果只有一个元素，并且中序遍历和前序遍历元素相同
@@ -462,6 +497,7 @@ BiTPos CreateBiTree2(int* post_start, int* post_end, int* in_start, int* in_end,
 	root->lchild = NULL;
 	root->rchild = NULL;
 	root->index = root_value;
+	root->value = 'N';
 	size++;
 
 	//如果只有一个元素，并且中序遍历和后序遍历元素相同
@@ -534,6 +570,9 @@ void CreateBiTree3(BiTPos&root,int &size)
 			exit(OVERFLOW);
 		}
 		size++;
+		root->index = size;
+		root->index = NULL;
+		root->rchild = NULL;
 		root->value = ch;
 		CreateBiTree3(root->lchild,size);//Create left tree
 		CreateBiTree3(root->rchild,size);//Create right tree
@@ -547,4 +586,10 @@ void Destroy(BiTPos&root)
 	Destroy(root->rchild);
 	free(root);
 	root = NULL;
+}
+
+status visit(BiTPos&node)
+{
+	printf("key:%d value:%c  ", node->index, node->value);
+	return OK;
 }

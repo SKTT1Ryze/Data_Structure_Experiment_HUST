@@ -1,19 +1,114 @@
-﻿  pch.cpp
-  BinaryTree_Link.cpp
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(12): warning C4005: “OVERFLOW”: 宏重定义
+﻿  BinaryTree_Link.cpp
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(13): warning C4005: “OVERFLOW”: 宏重定义
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\corecrt_math.h(966): note: 参见“OVERFLOW”的前一个定义
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(82): warning C4715: “CreateBiTree”: 不是所有的控件路径都返回值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(87): error C4716: “DestroyBiTree”: 必须返回一个值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(93): error C4716: “ClearBiTree”: 必须返回一个值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(98): error C4716: “BiTreeEmpty”: 必须返回一个值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(103): error C4716: “BiTreeDepth”: 必须返回一个值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(108): error C4716: “LocateNode”: 必须返回一个值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(113): error C4716: “Assign”: 必须返回一个值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(118): error C4716: “GetSibling”: 必须返回一个值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(123): error C4716: “InsertNode”: 必须返回一个值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(128): error C4716: “DeleteNode”: 必须返回一个值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(138): error C4716: “InOrderTraverse”: 必须返回一个值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(143): error C4716: “PostOrderTraverse”: 必须返回一个值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(133): error C4716: “PreOrderTraverse”: 必须返回一个值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(148): error C4716: “LevelOrderTraverse”: 必须返回一个值
-c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.cpp(34): error C4700: 使用了未初始化的局部变量“index”
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(18): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(18): error C2146: 语法错误: 缺少“;”(在标识符“SElemType”的前面)
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(22): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(22): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(22): error C2238: 意外的标记位于“;”之前
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(23): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(23): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(23): error C2238: 意外的标记位于“;”之前
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(28): error C2061: 语法错误: 标识符“SElemType”
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(29): error C2061: 语法错误: 标识符“SElemType”
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(30): error C2061: 语法错误: 标识符“SElemType”
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(35): error C2039: “base”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(35): error C2059: 语法错误:“)”
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(36): error C2039: “base”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(37): error C2039: “top”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(37): error C2039: “base”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(43): error C2039: “base”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(43): error C2039: “top”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(56): error C2061: 语法错误: 标识符“SElemType”
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(59): error C2039: “top”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(59): error C2039: “base”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(64): error C2065: “e”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(64): error C2039: “top”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(68): error C2061: 语法错误: 标识符“SElemType”
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(71): error C2039: “top”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(71): error C2039: “base”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(74): error C2039: “base”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(74): error C2059: 语法错误:“)”
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(75): error C2039: “base”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(76): error C2039: “top”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(76): error C2039: “base”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(79): error C2039: “top”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(79): error C2065: “e”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(83): error C2061: 语法错误: 标识符“SElemType”
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(86): error C2039: “top”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(86): error C2039: “base”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(91): error C2065: “e”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(91): error C2039: “top”: 不是“SqStack”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(21): note: 参见“SqStack”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(37): error C2040: “BiTPos”:“BiTNode *”与“int”的间接寻址级别不同
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(135): error C2440: “=”: 无法从“BiTPos”转换为“BiTNode *”
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(135): note: 从整型强制转换为指针类型要求 reinterpret_cast、C 样式强制转换或函数样式强制转换
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(206): error C2440: “=”: 无法从“BiTPos”转换为“BiTNode *”
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(206): note: 从整型强制转换为指针类型要求 reinterpret_cast、C 样式强制转换或函数样式强制转换
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(212): error C2664: “void CreateBiTree3(BiTPos &,int &)”: 无法将参数 1 从“BiTNode *”转换为“BiTPos &”
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(83): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1272): note: 参见“scanf”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(114): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1272): note: 参见“scanf”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(154): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1272): note: 参见“scanf”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(185): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1272): note: 参见“scanf”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(232): error C2664: “void Destroy(BiTPos &)”: 无法将参数 1 从“BiTNode *”转换为“BiTPos &”
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(239): error C2561: “ClearBiTree”: 函数必须返回值
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(237): note: 参见“ClearBiTree”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(265): error C2561: “LocateNode”: 函数必须返回值
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(263): note: 参见“LocateNode”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(270): error C2561: “Assign”: 函数必须返回值
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(268): note: 参见“Assign”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(275): error C2561: “GetSibling”: 函数必须返回值
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(273): note: 参见“GetSibling”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(280): error C2561: “InsertNode”: 函数必须返回值
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(278): note: 参见“InsertNode”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(285): error C2561: “DeleteNode”: 函数必须返回值
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(283): note: 参见“DeleteNode”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(298): error C2660: “Push”: 函数不接受 2 个参数
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(68): note: 参见“Push”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(301): error C2660: “Pop”: 函数不接受 2 个参数
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(83): note: 参见“Pop”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(321): error C2440: “初始化”: 无法从“BiTNode *”转换为“BiTPos”
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(321): note: 没有使该转换得以执行的上下文
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(326): error C2660: “Push”: 函数不接受 2 个参数
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(68): note: 参见“Push”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(331): error C2660: “Pop”: 函数不接受 2 个参数
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\stackadt.h(83): note: 参见“Pop”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(347): error C2440: “初始化”: 无法从“BiTNode *”转换为“BiTPos”
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(347): note: 没有使该转换得以执行的上下文
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(387): error C2440: “初始化”: 无法从“BiTNode *”转换为“BiTPos”
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(387): note: 没有使该转换得以执行的上下文
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(561): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1272): note: 参见“scanf”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(587): error C2664: “void free(void *)”: 无法将参数 1 从“BiTPos”转换为“void *”
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(587): note: 从整型强制转换为指针类型要求 reinterpret_cast、C 样式强制转换或函数样式强制转换
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(593): warning C4473: “printf”: 没有为格式字符串传递足够的参数
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(593): note: 占位符和其参数预计 2 可变参数，但提供的却是 0 参数
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.h(593): note: 缺失的可变参数 1 为格式字符串“%d”所需
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.cpp(139): error C2664: “int BiTreeDepth(BiTPos &)”: 无法将参数 1 从“BiTNode *”转换为“BiTPos &”
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.cpp(139): warning C4473: “printf”: 没有为格式字符串传递足够的参数
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.cpp(139): note: 占位符和其参数预计 1 可变参数，但提供的却是 0 参数
+  c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.cpp(139): note: 缺失的可变参数 1 为格式字符串“%d”所需
+c:\users\sktt1ryze\desktop\datastructure_code\binarytree_link\binarytree_link\binarytree_link.cpp(72): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1272): note: 参见“scanf”的声明

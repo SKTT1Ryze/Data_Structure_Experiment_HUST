@@ -5,12 +5,6 @@
 #include<stdlib.h>
 #include"BinaryTree_Link.h"
 //define return value
-#define TRUE 1
-#define FALSE 0
-#define OK 1
-#define ERROR 0
-#define INFEASTABLE -1
-#define OVERFLOW -2
 #define STACK_INIT_SIZE 100
 #define STACKINCREMENT 10
 

@@ -341,7 +341,7 @@ status BiTreeEmpty(BinaryTreePos&T)
 	if(T==NULL)
 	{
 		printf("*The BiTree is NULL\n");
-		return FALSE;
+		return ERROR;
 	}
 	if (T->root == NULL)
 		return TRUE;
@@ -362,7 +362,7 @@ BiTPos LocateNode(BinaryTreePos&T, KeyType e)
 	if(T==NULL)
 	{
 		printf("*The BiTree is NULL\n");
-		return FALSE;
+		return ERROR;
 	}
 	BiTPos result=NULL;
 	if(LevelOrderTraverse(T,e,result)==OK)
@@ -376,7 +376,7 @@ status Assign(BinaryTreePos&T, KeyType e, ElemType value)
 	if(T==NULL)
 	{
 		printf("*The BiTree is NULL\n");
-		return FALSE;
+		return ERROR;
 	}
 	BiTPos target=LocateNode(T,e);
 	if(target!=NULL)
@@ -394,7 +394,7 @@ BiTPos GetSibling(BinaryTreePos&T, KeyType e)
 	if(T==NULL)
 	{
 		printf("*The BiTree is NULL\n");
-		return FALSE;
+		return ERROR;
 	}
 	BiTPos target=LocateNode(T,e);
 	if(target!=NULL)
@@ -422,7 +422,92 @@ BiTPos GetSibling(BinaryTreePos&T, KeyType e)
 
 status InsertNode(BinaryTreePos&T, KeyType e, int LR, BiTPos&c)
 {
-	return OK;
+	if(T==NULL)
+	{
+		printf("*The BiTree is NULL\n");
+		return ERROR;
+	}
+	BiTPos result=NULL;
+	BiTPos ltemp=NULL;
+	BiTPos rtemp=NULL;
+	if(LevelOrderTraverse(T,e,result)==OK)//find the node
+	{
+		if(LR==0)
+		{
+			//insert to the left
+			ltemp=result->lchild;
+			rtemp=result->rchild;
+			if(ltemp&&rtemp)
+			{
+				printf("*have left and right children\n");
+				result->lchild=c;
+				result->rchild=NULL;
+				c->lchild=ltemp;
+				c->rchild=rtemp;
+				printf("*Insert Success\n");
+			}
+			else if(ltemp&&!rtemp)
+			{
+				printf("*have left child\n");
+				result->lchild=c;
+				result->rchild=NULL;
+				c->lchild=NULL;
+				c->rchild=ltemp;
+				printf("*Insert Success\n");
+			}
+			else
+			{
+				printf("*have right child\n");
+				result->lchild=c;
+				result->rchild=NULL;
+				c->lchild=NULL;
+				c->rchild=rtemp;
+				printf("*Insert Success\n");
+			}
+			return OK;
+		}
+		else if(LR==1)
+		{
+			//insert to the right
+			ltemp=result->lchild;
+			rtemp=result->rchild;
+			if(ltemp&&rtemp)
+			{
+				printf("*have left and right children\n");
+				result->rchild=c;
+				result->lchild=NULL;
+				c->lchild=ltemp;
+				c->rchild=rtemp;
+				printf("*Insert Success\n");
+			}
+			else if(ltemp&&!rtemp)
+			{
+				printf("*have left child\n");
+				result->rchild=c;
+				result->lchild=NULL;
+				c->lchild=NULL;
+				c->rchild=ltemp;
+				printf("*Insert Success\n");
+			}
+			else
+			{
+				printf("*have right child\n");
+				result->rchild=c;
+				result->lchild=NULL;
+				c->lchild=NULL;
+				c->rchild=rtemp;
+				printf("*Insert Success\n");
+			}
+			return OK;
+		}
+		else
+		{
+			printf("*Input Error\n");
+			return ERROR;
+		}
+	}
+	else
+		return ERROR;
 }
 
 status DeleteNode(BinaryTreePos&T, KeyType e)
@@ -676,7 +761,6 @@ status LevelOrderTraverse(BinaryTreePos&T, KeyType e,BiTPos&result)
 	printf("*Not Found\n");
 	return ERROR;
 }
-
 
 
 

@@ -35,6 +35,14 @@ int main(int argc, char *argv[])
 	BiTPos result=NULL;
 	ElemType value=0;
 
+	BiTPos c=(BiTPos)malloc(sizeof(BiTNode));
+	c->index=0;
+	c->value=0;
+	c->lchild=NULL;
+	c->rchild=NULL;
+
+	int LR=0;
+	
 	BinaryTreePos TreeGroup[MaxTreeNumner];
 	for (i = 0; i < MaxTreeNumner; i++)//Initilaze
 	{
@@ -231,10 +239,25 @@ int main(int argc, char *argv[])
 			printf("Your choise:9\n");
 			printf("/*\n *Function Name:InsertNode\n");
 			printf(" *Module:Data structures\n");
-			printf(" *Parameter:LinkList L,ElemType cur,ElemType&next_e\n");
+			printf(" *Parameter:BinaryTreePos&T, KeyType e, int LR, BiTPos&c\n");
 			printf(" *Return:status\n");
-			printf(" *Use:find the next element of cur in the LinearList\n*/\n");
-
+			printf(" *Use:insert a node \n*/\n");
+			printf("*input the key of the node:");
+			scanf("%d",&(c->index));
+			printf("*input the value of the node:");
+			scanf("%d",&(c->value));
+			printf("*Input the Key:");
+			scanf("%d",&e);
+			printf("*LR:0 or 1: ");
+			scanf("%d",&LR);
+			if(InsertNode(*T,e,LR,c)==OK)
+			{
+				printf("*Operator Success\n");
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;

@@ -20,6 +20,8 @@ status PreOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 status InOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 status PostOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 status LevelOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
+status LevelOrderTraverse(BinaryTreePos&T, int&keydex);
+status LevelOrderTraverse(BinaryTreePos&T, KeyType e,BiTPos&result);
 void Destroy(BiTPos&root);
 status visit(BiTPos&node);
 
@@ -28,6 +30,9 @@ int main(int argc, char *argv[])
 	int op = 1;
 	int i = 0;
 	int definition = 1;
+	
+	KeyType e=0;
+	BiTPos result=NULL;
 
 	BinaryTreePos TreeGroup[MaxTreeNumner];
 	for (i = 0; i < MaxTreeNumner; i++)//Initilaze
@@ -156,10 +161,21 @@ int main(int argc, char *argv[])
 			printf("Your choise:6\n");
 			printf("/*\n *Function Name:LocateNode\n");
 			printf(" *Module:Data structures\n");
-			printf(" *Parameter:LinkList L,int order,ElemType& elem\n");
+			printf(" *Parameter:BinaryTreePos&T, KeyType e\n");
 			printf(" *Return:status\n");
-			printf(" *Use:get the No.order element of the LinearList\n*/\n");
-
+			printf(" *Use:get the node with key e in the BiTree\n*/\n");
+			printf("*Input the Key:");
+			scanf("%d",&e);
+			result=LocateNode(*T,e);
+			if(result!=NULL)
+			{
+				printf("*Operator Success\n");
+				printf("*key:%d value:%d\n",result->index,result->value);
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;
@@ -248,8 +264,9 @@ int main(int argc, char *argv[])
 			printf("Your choise:13\n");
 			printf("/*\n");
 			printf(" *Function Name:PostOrderTraverse\n");
-			printf(" *Parameter:BinaryTreePos&T, status(*visit)(BiTPos&node)\n");
 			printf(" *Module:Data structures\n");
+			printf(" *Parameter:BinaryTreePos&T, status(*visit)(BiTPos&node)\n");
+			printf(" *Return:status\n");
 			printf(" *Use:Travel the BinaryTree in post_order\n");
 			if (PostOrderTraverse(*T, visit) == OK)
 			{
@@ -266,8 +283,9 @@ int main(int argc, char *argv[])
 			printf("Your choise:14\n");
 			printf("/*\n");
 			printf(" *Function Name:LevelOrderTraverse\n");
-			printf(" *Parameter:BinaryTreePos&T, status(*visit)(BiTPos&node)\n");
 			printf(" *Module:Data structures\n");
+			printf(" *Parameter:BinaryTreePos&T, status(*visit)(BiTPos&node)\n");
+			printf(" *Return:status\n");
 			printf(" *Use:Travel the BinaryTree in level_order\n");
 			if (LevelOrderTraverse(*T, visit) == OK)
 			{

@@ -68,9 +68,11 @@ status InOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 status PostOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 status LevelOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 status LevelOrderTraverse(BinaryTreePos&T, int&keydex);
+status LevelOrderTraverse(BinaryTreePos&T, KeyType e,BiTPos&result);
 BiTPos CreateBiTree1(int* pre_start, int* pre_end, int* in_start, int* in_end, int&size);
 BiTPos CreateBiTree2(int* post_start, int* post_end, int* in_start, int* in_end, int&size);
 void CreateBiTree3(BiTPos&root, int&size,int&ch);
+void CreateBiTree4(BiTPos&root,int&size,ElemType Array[],int&count);
 void Destroy(BiTPos&root);
 status visit(BiTPos&node);
 
@@ -271,12 +273,35 @@ status CreateBiTree(BinaryTreePos&T, int definition)
 		//scanf("%d",&ch);
 		CreateBiTree3(T->root, T->size,ch);
 		LevelOrderTraverse(T,keydex);
+		printf("*size:&d\n",T->size);
 		printf("*Create Success\n");
 		return OK;
 		
 	}
 	else if (definition == 4)//PostOrder and NULL
 	{
+		printf("*input node value(positive int),null node donates by 0\n");
+		printf("*end with -1\n");
+		ElemType Array[MaxSize];
+		int keydex=1;
+		int count=0;
+		ElemType input=1;
+		while(input!=-1)
+		{
+			scanf("%d",&input);
+			if(input==-1)printf("*Input end\n");
+			else if(input<0)printf("*input error\n");
+			else 
+			{
+				printf("*input success\n");
+				Array[count]=input;
+				count++;
+			}
+		}
+		CreateBiTree4(T->root,T->size,Array,count);
+		LevelOrderTraverse(T,keydex);
+		printf("*Create Success\n");
+		return OK;
 
 	}
 	else
@@ -335,7 +360,16 @@ int BiTreeDepth(BiTPos&root)
 
 BiTPos LocateNode(BinaryTreePos&T, KeyType e)
 {
-	return NULL;
+	if(T==NULL)
+	{
+		printf("*The BiTree is NULL\n");
+		return FALSE;
+	}
+	BiTPos result=NULL;
+	if(LevelOrderTraverse(T,e,result)==OK)
+		return result;
+	else
+		return NULL;
 }
 
 status Assign(BinaryTreePos&T, KeyType e, ElemType value)
@@ -555,6 +589,55 @@ status LevelOrderTraverse(BinaryTreePos&T, int&keydex)
 	return OK;
 }
 
+status LevelOrderTraverse(BinaryTreePos&T, KeyType e,BiTPos&result)
+{
+	if(T==NULL)
+	{
+		printf("*The BiTree is null\n");
+		return ERROR;
+	}
+	if (T->root == NULL)
+	{
+		printf("*The BiTree is Empty\n");
+		return ERROR;
+	}
+	BiTPos t = T->root;
+	BiTPos temp = NULL;//use for store
+	BiTPos Sq[MaxSize];
+	int rear = 0;
+	int front = 0;
+	Sq[front++] = t;//root enqueue
+	while (rear != front)
+	{
+		if (front >= MaxOrder)
+		{
+			printf("*OVERFLOW\n");
+			exit(OVERFLOW);
+		}
+		t=Sq[rear];
+		if(t->index==e)//visit
+		{
+			printf("*Found\n");
+			result=t;
+			return OK;
+		}
+		if (t->lchild != NULL)//lchild is not null,enqueue
+		{
+			Sq[front++] = t->lchild;//lchild enqueue
+			//printf("*lchild enqueue\n");
+		}
+		if (t->rchild != NULL)
+		{
+			Sq[front++] = t->rchild;//rchild enqueue
+			//printf("*rchild enqueue\n");
+		}
+		rear++;//dequeue
+		
+	}
+	printf("*LevelOrderTraverse Success\n");
+	printf("*Not Found\n");
+	return ERROR;
+}
 
 
 
@@ -703,6 +786,7 @@ BiTPos CreateBiTree2(int* post_start, int* post_end, int* in_start, int* in_end,
 void CreateBiTree3(BiTPos&root, int &size,int&ch)
 {
 	scanf("%d",&ch);//input an node
+	printf("*input success\n");
 	if (ch ==0)root = NULL;
 	else
 	{
@@ -721,6 +805,40 @@ void CreateBiTree3(BiTPos&root, int &size,int&ch)
 		CreateBiTree3(root->rchild, size,ch);//Create right tree
 	}
 }
+
+void CreateBiTree4(BiTPos&root,int&size,ElemType Array[],int&count)
+{
+	ElemType item=Array[count-1];
+	count--;
+	if(item==0)
+	{
+		root=NULL;
+	}
+	else
+	{
+		root=(BiTPos)malloc(sizeof(struct BiTNode));
+		if(!root)
+		{
+			printf("*OVERFLOW\n");
+			exit(OVERFLOW);
+		}
+		root->value=item;
+		root->index=0;
+		root->lchild=NULL;
+		root->rchild=NULL;
+		size++;
+		CreateBiTree4(root->rchild,size,Array,count);//create right tree
+		CreateBiTree4(root->lchild,size,Array,count);//create light tree
+	}
+}
+
+
+
+
+
+
+
+
 
 void Destroy(BiTPos&root)
 {

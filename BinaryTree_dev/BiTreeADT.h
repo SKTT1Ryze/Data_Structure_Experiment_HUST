@@ -273,7 +273,6 @@ status CreateBiTree(BinaryTreePos&T, int definition)
 		//scanf("%d",&ch);
 		CreateBiTree3(T->root, T->size,ch);
 		LevelOrderTraverse(T,keydex);
-		printf("*size:&d\n",T->size);
 		printf("*Create Success\n");
 		return OK;
 		
@@ -374,12 +373,51 @@ BiTPos LocateNode(BinaryTreePos&T, KeyType e)
 
 status Assign(BinaryTreePos&T, KeyType e, ElemType value)
 {
-	return OK;
+	if(T==NULL)
+	{
+		printf("*The BiTree is NULL\n");
+		return FALSE;
+	}
+	BiTPos target=LocateNode(T,e);
+	if(target!=NULL)
+	{
+		target->value=value;
+		printf("*value change\n");
+		return OK;
+	}
+	else
+		return ERROR;
 }
 
 BiTPos GetSibling(BinaryTreePos&T, KeyType e)
 {
-	return NULL;
+	if(T==NULL)
+	{
+		printf("*The BiTree is NULL\n");
+		return FALSE;
+	}
+	BiTPos target=LocateNode(T,e);
+	if(target!=NULL)
+	{
+		if(target->lchild!=NULL)
+		{
+			printf("*have left child\n");
+			return target->lchild;
+		}
+		else if(target->rchild!=NULL)
+		{
+			printf("*don't have left child\n");
+			printf("*have right child\n");
+			return target->rchild;
+		}
+		else
+		{
+			printf("*don't have child\n");
+			return NULL;
+		}
+	}
+	else
+		return NULL;
 }
 
 status InsertNode(BinaryTreePos&T, KeyType e, int LR, BiTPos&c)
@@ -655,7 +693,7 @@ BiTPos CreateBiTree1(int* pre_start, int* pre_end, int* in_start, int* in_end, i
 	root->lchild = NULL;
 	root->rchild = NULL;
 	root->index = root_value;
-	root->value = 'N';
+	root->value = 0;
 	size++;
 
 	//如果只有一个元素，并且中序遍历和前序遍历元素相同
@@ -725,7 +763,7 @@ BiTPos CreateBiTree2(int* post_start, int* post_end, int* in_start, int* in_end,
 	root->lchild = NULL;
 	root->rchild = NULL;
 	root->index = root_value;
-	root->value = 'N';
+	root->value = 0;
 	size++;
 
 	//如果只有一个元素，并且中序遍历和后序遍历元素相同

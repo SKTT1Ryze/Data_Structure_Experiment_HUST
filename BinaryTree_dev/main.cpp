@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
 	
 	KeyType e=0;
 	BiTPos result=NULL;
+	ElemType value=0;
 
 	BinaryTreePos TreeGroup[MaxTreeNumner];
 	for (i = 0; i < MaxTreeNumner; i++)//Initilaze
@@ -162,7 +163,7 @@ int main(int argc, char *argv[])
 			printf("/*\n *Function Name:LocateNode\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Parameter:BinaryTreePos&T, KeyType e\n");
-			printf(" *Return:status\n");
+			printf(" *Return:BiTPos\n");
 			printf(" *Use:get the node with key e in the BiTree\n*/\n");
 			printf("*Input the Key:");
 			scanf("%d",&e);
@@ -183,11 +184,22 @@ int main(int argc, char *argv[])
 			printf("Your choise:7\n");
 			printf("/*\n *Function Name:Assign\n");
 			printf(" *Module:Data structures\n");
-			printf(" *Parameter:LinkList L,ElemType elem,FunctionPointer compare\n");
+			printf(" *Parameter:BinaryTreePos&T, KeyType e, ElemType value\n");
 			printf(" *Return:int\n");
-			printf(" *Use:find the first element in the LinearList\n");
-			printf(" *with the relationship compare with e\n*/\n");
-
+			printf(" *Use:find the node with key e in the BiTree\n");
+			printf(" *and change the value\n*/\n");
+			printf("*Input the Key:");
+			scanf("%d",&e);
+			printf("*Input the value:\n");
+			scanf("%d",&value);
+			if(Assign(*T,e,value)==OK)
+			{
+				printf("*Operator Success\n");
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;
@@ -195,10 +207,23 @@ int main(int argc, char *argv[])
 			printf("Your choise:8\n");
 			printf("/*\n *Function Name:GetSibling\n");
 			printf(" *Module:Data structures\n");
-			printf(" *Parameter:LinkList L,ElemType cur,ElemType&pre_e\n");
-			printf(" *Return:status\n");
-			printf(" *Use:find the pre element of cur in the LinearList\n*/\n");
-
+			printf(" *Parameter:BinaryTreePos&T, KeyType e\n");
+			printf(" *Return:BiTPos\n");
+			printf(" *Use:find the node with key e in BiTree\n*/\n");
+			printf(" *if node have lchild,return,else if have rchild\n*/\n");
+			printf(" *return,else return null\n*/\n");
+			printf("*Input the Key:");
+			scanf("%d",&e);
+			result=GetSibling(*T,e);
+			if(result!=NULL)
+			{
+				printf("*Operator Success\n");
+				printf("*key:%d value:%d\n",result->index,result->value);
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;

@@ -1,4 +1,3 @@
-
 #include<stdio.h>
 #include<stdlib.h>
 #include"BiTreeADT.h"
@@ -30,14 +29,12 @@ int main(int argc, char *argv[])
 	int i = 0;
 	int definition = 1;
 
-	BinaryTree TreeGroup[MaxTreeNumner];
+	BinaryTreePos TreeGroup[MaxTreeNumner];
 	for (i = 0; i < MaxTreeNumner; i++)//Initilaze
 	{
-		TreeGroup[i].id = i;
-		TreeGroup[i].size = 0;
-		TreeGroup[i].root = NULL;
+		TreeGroup[i]=NULL;
 	}
-	BinaryTreePos T = &TreeGroup[0];//T is the first tree
+	BinaryTreePos *T = &TreeGroup[0];//T is the first tree
 	int index=0;
 	while (op)
 	{
@@ -69,8 +66,10 @@ int main(int argc, char *argv[])
 			printf(" *Use:Create a tree\n*/\n");
 			printf("*Definition:\n*1.preorder and inorder\n*2.postorder and inorder\n*3.preorder and nullnode\n*4.postorder and nullnode\n");
 			scanf("%d", &definition);
-			if (CreateBiTree(T, definition) == OK)
+			if (CreateBiTree(*T, definition) == OK)
 			{
+				(*T)->id=index;
+				printf("*size:%d\n",(*T)->size);
 				printf("*Operator Success\n");
 			}
 			else
@@ -88,7 +87,7 @@ int main(int argc, char *argv[])
 			printf(" *Parameter:BinaryTreePos&T\n");
 			printf(" *Return:status\n");
 			printf(" *Use:destroy the BinaryTree\n*/\n");
-			if (DestroyBiTree(T) == OK)
+			if (DestroyBiTree(*T) == OK)
 			{
 				printf("*Operator Success\n");
 			}
@@ -106,7 +105,14 @@ int main(int argc, char *argv[])
 			printf(" *Parameter:LinkList L\n");
 			printf(" *Return:status\n");
 			printf(" *Use:reset the LinearList\n*/\n");
-
+			if(ClearBiTree(*T)==OK)
+			{
+				printf("*Operator Success\n");
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;
@@ -117,7 +123,7 @@ int main(int argc, char *argv[])
 			printf(" *Parameter:BinaryTreePos&T\n");
 			printf(" *Return:status\n");
 			printf(" *Use:judge the BinaryTree null or not\n*/\n");
-			if (BiTreeEmpty(T) == TRUE)
+			if (BiTreeEmpty(*T) == TRUE)
 			{
 				printf("*Empty\n");
 			}
@@ -135,14 +141,14 @@ int main(int argc, char *argv[])
 			printf(" *Parameter:BinaryTreePos&T\n");
 			printf(" *Return:int\n");
 			printf(" *Use:return the depth of the BinaryTree\n*/\n");
-			if(T->root==NULL)
+			if(*T==NULL)
 			{
-				printf("*The BinaryTree is not NULL\n");
+				printf("*The BinaryTree is NULL\n");
 				getchar();
 				getchar();
 				break;
 			}
-			printf("*Depth:%d\n", BiTreeDepth(T->root));
+			printf("*Depth:%d\n", BiTreeDepth((*T)->root));
 			getchar();
 			getchar();
 			break;
@@ -209,7 +215,7 @@ int main(int argc, char *argv[])
 			printf(" *Parameter:BinaryTreePos&T, status(*visit)(BiTPos&node)\n");
 			printf(" *Return:status\n");
 			printf(" *Use:Travel the BinaryTree in pre_order\n*/\n");
-			if (PreOrderTraverse(T, visit) == OK)
+			if (PreOrderTraverse(*T, visit) == OK)
 			{
 				printf("*Operator Success\n");
 			}
@@ -227,7 +233,7 @@ int main(int argc, char *argv[])
 			printf(" *Parameter:BinaryTreePos&T, status(*visit)(BiTPos&node)\n");
 			printf(" *Return:status\n");
 			printf(" *Use:Travel the BinaryTree in in_order\n*/\n");
-			if (InOrderTraverse(T, visit) == OK)
+			if (InOrderTraverse(*T, visit) == OK)
 			{
 				printf("*Operator Success\n");
 			}
@@ -245,7 +251,7 @@ int main(int argc, char *argv[])
 			printf(" *Parameter:BinaryTreePos&T, status(*visit)(BiTPos&node)\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:Travel the BinaryTree in post_order\n");
-			if (PostOrderTraverse(T, visit) == OK)
+			if (PostOrderTraverse(*T, visit) == OK)
 			{
 				printf("*Operator Success\n");
 			}
@@ -263,7 +269,7 @@ int main(int argc, char *argv[])
 			printf(" *Parameter:BinaryTreePos&T, status(*visit)(BiTPos&node)\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:Travel the BinaryTree in level_order\n");
-			if (LevelOrderTraverse(T, visit) == OK)
+			if (LevelOrderTraverse(*T, visit) == OK)
 			{
 				printf("*Operator Success\n");
 			}

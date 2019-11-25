@@ -2,7 +2,9 @@
 #include"pch.h"
 #include<stdio.h>
 #include<stdlib.h>
+
 #include"LinearList_2.h"
+
 
 //Functions Declaration
 status InitList(LinkList &L);
@@ -68,8 +70,9 @@ int main(int argc,char *argv[])
 		printf("    	  13.save           14.load\n");	
 		printf("    	  15.ListSet        16. ChangeList\n");
 		printf("          17.ListMerge      0. Exit\n");
+		printf("          -1.dir\n");
 		printf("-------------------------------------------------\n");
-		printf("    请选择你的操作[0~17]:");
+		printf("    请选择你的操作[-1~17]:");
 		scanf_s("%d", &op);
 		switch (op)
 		{
@@ -117,9 +120,9 @@ int main(int argc,char *argv[])
 				printf(" *Return:status\n");
 				printf(" *Use:judge the LinearList null or not\n*/\n");
 				if (ListEmpty(*L) == TRUE)
-					printf("*LinearList is null\n");
+					printf("*LinearList is empty\n");
 				else
-					printf("*LinearList is not null\n");
+					printf("*LinearList is not empty\n");
 				getchar();
 				getchar();
 				break;
@@ -442,6 +445,13 @@ int main(int argc,char *argv[])
 				break;
 			case 0:
 				break;
+			case -1:
+				//system("c:\\Users\\SKTT1Ryze\\Desktop\\DataStructure_Code\\LinearList_2\\Debug");
+				system("dir c:\\Users\\SKTT1Ryze\\Desktop\\DataStructure_Code\\LinearList_2\\Debug");
+				getchar();
+				getchar();
+				break;
+
 		}//end of switch
 		printf("Welcome next time");
 	}//end of while

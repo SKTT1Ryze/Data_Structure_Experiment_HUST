@@ -35,11 +35,7 @@ int main(int argc, char *argv[])
 	BiTPos result=NULL;
 	ElemType value=0;
 
-	BiTPos c=(BiTPos)malloc(sizeof(BiTNode));
-	c->index=0;
-	c->value=0;
-	c->lchild=NULL;
-	c->rchild=NULL;
+	BiTPos c=NULL;
 
 	int LR=0;
 	
@@ -242,8 +238,17 @@ int main(int argc, char *argv[])
 			printf(" *Parameter:BinaryTreePos&T, KeyType e, int LR, BiTPos&c\n");
 			printf(" *Return:status\n");
 			printf(" *Use:insert a node \n*/\n");
-			printf("*input the key of the node:");
-			scanf("%d",&(c->index));
+			c=(BiTPos)malloc(sizeof(BiTNode));
+			if(!c)
+			{
+				printf("*Space Call Error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			c->index=0;
+			c->lchild=NULL;
+			c->rchild=NULL;
 			printf("*input the value of the node:");
 			scanf("%d",&(c->value));
 			printf("*Input the Key:");
@@ -265,10 +270,20 @@ int main(int argc, char *argv[])
 			printf("Your choise:10\n");
 			printf("/*\n *Function Name:DeleteNode\n");
 			printf(" *Module:Data structures\n");
-			printf(" *Parameter:LinkList L,int order,ElemType elem\n");
+			printf(" *Parameter:BinaryTreePos&T, KeyType e\n");
 			printf(" *Return:status\n");
-			printf(" *Use:insert an element into the LinearList\n*/\n");
-
+			printf(" *Use:delete the node with key e\n*/\n");
+			printf("*Input the key:");
+			scanf("%d",&e);
+			if(DeleteNode(*T,e)==OK)
+			{
+				printf("*Operator Success\n");
+				(*T)->size--;
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;

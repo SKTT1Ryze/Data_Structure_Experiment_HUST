@@ -6,12 +6,12 @@ CC       = gcc.exe
 WINDRES  = windres.exe
 OBJ      = main.o
 LINKOBJ  = main.o
-LIBS     = -L"D:/C++/Dev-Cpp-/MinGW64/lib" -L"D:/C++/Dev-Cpp-/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+LIBS     = -L"D:/C++/Dev-Cpp-/MinGW64/lib" -L"D:/C++/Dev-Cpp-/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
 INCS     = -I"D:/C++/Dev-Cpp-/MinGW64/include" -I"D:/C++/Dev-Cpp-/MinGW64/x86_64-w64-mingw32/include"
 CXXINCS  = -I"D:/C++/Dev-Cpp-/MinGW64/include" -I"D:/C++/Dev-Cpp-/MinGW64/x86_64-w64-mingw32/include" -I"D:/C++/Dev-Cpp-/MinGW64/lib/gcc/x86_64-w64-mingw32/4.7.1/include/c++"
 BIN      = BinaryTree_dev.exe
-CXXFLAGS = $(CXXINCS) 
-CFLAGS   = $(INCS) 
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
 RM       = rm -f
 
 .PHONY: all all-before all-after clean clean-custom

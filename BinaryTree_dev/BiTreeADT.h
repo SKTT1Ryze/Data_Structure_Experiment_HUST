@@ -66,6 +66,8 @@ status DeleteNode(BinaryTreePos&T, KeyType e);
 status PreOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 status InOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 status PostOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
+status PostOrderTraverse(BinaryTreePos&T, KeyType e,BiTPos&dad,int&isleft);
+status PostOrderTraverse(BinaryTreePos&T,KeyType delkey);
 status LevelOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 status LevelOrderTraverse(BinaryTreePos&T, int&keydex);
 status LevelOrderTraverse(BinaryTreePos&T, KeyType e,BiTPos&result);
@@ -107,7 +109,7 @@ status CreateBiTree(BinaryTreePos&T, int definition)
 		int in_order[MaxOrder];
 		int input = 1;
 		int i = 0;
-		printf("*Input positive pre_order,end with 0:\n");
+		printf("*Input positive pre_order,end with -1:\n");
 		while (1)
 		{
 			if (i >= MaxOrder)
@@ -117,12 +119,12 @@ status CreateBiTree(BinaryTreePos&T, int definition)
 			}
 			printf("index:%d\n", i);
 			scanf("%d", &input);
-			if (input == 0)
+			if (input == -1)
 			{
 				printf("*Input end\n");
 				break;
 			}
-			if (input < 0)
+			if (input <= 0)
 			{
 				printf("*Input is negative\n");
 				continue;
@@ -139,7 +141,7 @@ status CreateBiTree(BinaryTreePos&T, int definition)
 		}
 		int *pre_end = &pre_order[i - 1];
 		i = 0;
-		printf("*Input positive in_order,end with 0:\n");
+		printf("*Input positive in_order,end with -1:\n");
 		while (1)
 		{
 			if (i >= MaxOrder)
@@ -149,12 +151,12 @@ status CreateBiTree(BinaryTreePos&T, int definition)
 			}
 			printf("index:%d\n", i);
 			scanf("%d", &input);
-			if (input ==0)
+			if (input ==-1)
 			{
 				printf("*Input end\n");
 				break;
 			}
-			if (input < 0)
+			if (input <=0)
 			{
 				printf("*Input is negative\n");
 				continue;
@@ -189,7 +191,7 @@ status CreateBiTree(BinaryTreePos&T, int definition)
 		int in_order[MaxOrder];
 		int input = 1;
 		int i = 0;
-		printf("*Input positive post_order,end with 0:\n");
+		printf("*Input positive post_order,end with -1:\n");
 		while (1)
 		{
 			if (i >= MaxOrder)
@@ -199,12 +201,12 @@ status CreateBiTree(BinaryTreePos&T, int definition)
 			}
 			printf("index:%d\n", i);
 			scanf("%d", &input);
-			if (input == 0)
+			if (input == -1)
 			{
 				printf("*Input end\n");
 				break;
 			}
-			if (input < 0)
+			if (input <= 0)
 			{
 				printf("*Input is negative\n");
 				continue;
@@ -221,7 +223,7 @@ status CreateBiTree(BinaryTreePos&T, int definition)
 		}
 		int *post_end = &post_order[i -1];
 		i = 0;
-		printf("*Input positive in_order,end with 0:\n");
+		printf("*Input positive in_order,end with -1:\n");
 		while (1)
 		{
 			if (i >= MaxOrder)
@@ -231,12 +233,12 @@ status CreateBiTree(BinaryTreePos&T, int definition)
 			}
 			printf("index:%d\n", i);
 			scanf("%d", &input);
-			if (input ==0)
+			if (input ==-1)
 			{
 				printf("*Input end\n");
 				break;
 			}
-			if (input < 0)
+			if (input <= 0)
 			{
 				printf("*Input is negative\n");
 				continue;
@@ -455,7 +457,7 @@ status InsertNode(BinaryTreePos&T, KeyType e, int LR, BiTPos&c)
 				c->rchild=ltemp;
 				printf("*Insert Success\n");
 			}
-			else
+			else if(!ltemp&&rtemp)
 			{
 				printf("*have right child\n");
 				result->lchild=c;
@@ -464,6 +466,16 @@ status InsertNode(BinaryTreePos&T, KeyType e, int LR, BiTPos&c)
 				c->rchild=rtemp;
 				printf("*Insert Success\n");
 			}
+			else
+			{
+				printf("*have no child\n");
+				result->lchild=c;
+				result->rchild=NULL;
+				c->lchild=NULL;
+				c->rchild=NULL;
+				printf("*Insert Success\n");
+			}
+			c->index=++(T->size);
 			return OK;
 		}
 		else if(LR==1)
@@ -489,7 +501,7 @@ status InsertNode(BinaryTreePos&T, KeyType e, int LR, BiTPos&c)
 				c->rchild=ltemp;
 				printf("*Insert Success\n");
 			}
-			else
+			else if(!ltemp&&rtemp)
 			{
 				printf("*have right child\n");
 				result->rchild=c;
@@ -498,6 +510,16 @@ status InsertNode(BinaryTreePos&T, KeyType e, int LR, BiTPos&c)
 				c->rchild=rtemp;
 				printf("*Insert Success\n");
 			}
+			else
+			{
+				printf("*have no child\n");
+				result->lchild=NULL;
+				result->rchild=c;
+				c->lchild=NULL;
+				c->rchild=NULL;
+				printf("*Insert Success\n");
+			}
+			c->index=++T->size;
 			return OK;
 		}
 		else
@@ -512,7 +534,151 @@ status InsertNode(BinaryTreePos&T, KeyType e, int LR, BiTPos&c)
 
 status DeleteNode(BinaryTreePos&T, KeyType e)
 {
-	return OK;
+	if(T==NULL)
+	{
+		printf("*The BiTree is NULL\n");
+		return ERROR;
+	}
+	BiTPos result=NULL;
+	BiTPos ltemp=NULL;
+	BiTPos rtemp=NULL;
+	if(LevelOrderTraverse(T,e,result)==OK)//find the node
+	{
+		ltemp=result->lchild;
+		rtemp=result->rchild;
+		KeyType delkey=result->index;
+		
+		if(result==T->root)
+		{
+			if(!ltemp&&!rtemp)
+			{
+				printf("*don't have children\n");
+				free(result);
+				result=NULL;
+				T->root=NULL;
+			}
+			else if(ltemp&&!rtemp)
+			{
+				printf("*have left child\n");
+				free(result);
+				result=NULL;
+				T->root=ltemp;
+			}
+			else if(!ltemp&&rtemp)
+			{
+				printf("*have right child\n");
+				free(result);
+				result=NULL;
+				T->root=rtemp;
+			}
+			else
+			{
+				printf("*have left and right children\n");
+				free(result);
+				result=NULL;
+				T->root=ltemp;
+				result=ltemp;
+				while(result->rchild)
+				{
+					printf("*move right\n");
+					result=result->rchild;
+				}
+				printf("*move end\n");
+				result->rchild=rtemp;
+			}
+		}
+		else
+		{
+			BiTPos dad=NULL;
+			int IsLeft=0;
+			if(PostOrderTraverse(T,e,dad,IsLeft)==ERROR)
+			{
+				printf("*don't find father\n");
+			}
+			if(!ltemp&&!rtemp)
+			{
+				printf("*don't have children\n");
+				free(result);
+				result=NULL;
+				if(IsLeft)
+				{
+					dad->lchild=NULL;
+				}
+				else
+				{
+					dad->rchild=NULL;
+				}
+			}
+			else if(ltemp&&!rtemp)
+			{
+				printf("*have left child\n");
+				free(result);
+				result=NULL;
+				if(IsLeft)
+				{
+					dad->lchild=ltemp; 
+				}
+				else
+				{
+					dad->rchild=ltemp;
+				}
+			}
+			else if(!ltemp&&rtemp)
+			{
+				printf("*have right child\n");
+				free(result);
+				result=NULL;
+				if(IsLeft)
+				{
+					dad->lchild=rtemp; 
+				}
+				else
+				{
+					dad->rchild=rtemp;
+				}
+			}
+			else
+			{
+				printf("*have left and right children\n");
+				free(result);
+				result=NULL;
+				if(IsLeft)
+				{
+					dad->lchild=ltemp;
+					result=ltemp;
+					while(result->rchild)
+					{
+						printf("*move\n");
+						result=result->rchild;
+					}
+					printf("*move end\n");
+					result->rchild=rtemp;
+				}
+				else
+				{
+					dad->rchild=ltemp;
+					result=ltemp;
+					while(result->rchild)
+					{
+						printf("*move\n");
+						result=result->rchild;
+					}
+					printf("*move end\n");
+					result->rchild=rtemp;
+				}
+			}
+			
+		}
+		printf("*Delete Success\n");
+		if(PostOrderTraverse(T,delkey)==OK)
+		{
+			printf("*Key change success\n");
+		}
+		return OK;
+	}
+	else 
+		return ERROR;
+	
 }
 
 status PreOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node))
@@ -621,6 +787,121 @@ status PostOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node))
 	printf("*PostOderTravel Success\n");
 	return OK;
 }
+
+status PostOrderTraverse(BinaryTreePos&T, KeyType e,BiTPos&dad,int&isleft)
+{
+	if(T==NULL)
+	{
+		printf("*The BiTree is null\n");
+		return ERROR;
+	}
+	if (T->root == NULL)
+	{
+		printf("*The BiTree is Empty\n");
+		return ERROR;
+	}
+	BiTPos t = T->root;
+	BiTPos St[MaxSize], pre;
+	int flag = 0;
+	int top = 0;
+	do
+	{
+		while (t != NULL)
+		{
+			St[top++] = t;
+			t = t->lchild;
+		}
+		pre = NULL;
+		flag = 1;
+		while (top&&flag)
+		{
+			t = St[top - 1];
+			if (t->rchild == pre)
+			{
+				if(t->lchild)//visit
+				{
+					if(t->lchild->index==e)
+					{
+						printf("*Find Father\n");
+						dad=t;
+						isleft=1;
+						return OK;
+					}
+				}
+				if(t->rchild)//visit
+				{
+					if(t->rchild->index==e)
+					{
+						printf("*Find Father\n");
+						dad=t;
+						isleft=0;
+						return OK;
+					}
+				}
+				top--;
+				pre = t;
+			}
+			else
+			{
+				t = t->rchild;
+				flag = 0;
+			}
+		}
+	} while (top);
+	printf("*PostOderTravel Success\n");
+	return ERROR;
+}
+
+
+status PostOrderTraverse(BinaryTreePos&T,KeyType delkey)
+{
+	if(T==NULL)
+	{
+		printf("*The BiTree is null\n");
+		return ERROR;
+	}
+	if (T->root == NULL)
+	{
+		printf("*The BiTree is Empty\n");
+		return ERROR;
+	}
+	BiTPos t = T->root;
+	BiTPos St[MaxSize], pre;
+	int flag = 0;
+	int top = 0;
+	do
+	{
+		while (t != NULL)
+		{
+			St[top++] = t;
+			t = t->lchild;
+		}
+		pre = NULL;
+		flag = 1;
+		while (top&&flag)
+		{
+			t = St[top - 1];
+			if (t->rchild == pre)
+			{
+				if(t->index>delkey)//visit
+				{
+					printf("*key --\n");
+					t->index--;
+				}
+				top--;
+				pre = t;
+			}
+			else
+			{
+				t = t->rchild;
+				flag = 0;
+			}
+		}
+	} while (top);
+	printf("*PostOderTravel Success\n");
+	return OK;
+}
+
 
 status LevelOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node))
 {

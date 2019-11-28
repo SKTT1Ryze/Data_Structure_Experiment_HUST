@@ -4,7 +4,7 @@
 
 
 #define MaxTreeNumner 10
-
+#define MaxNodeSize 100
 //Functions Declaration
 status CreateBiTree(BinaryTreePos&T, int definition);
 status DestroyBiTree(BinaryTreePos&T);
@@ -17,13 +17,23 @@ BiTPos GetSibling(BinaryTreePos&T, KeyType e);
 status InsertNode(BinaryTreePos&T, KeyType e, int LR, BiTPos&c);
 status DeleteNode(BinaryTreePos&T, KeyType e);
 status PreOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
+status PreOrderTraverse(BinaryTreePos&T, int*key_save,int*value_save,int&size);
+status PreOrderTraverse(BinaryTreePos&T, int*value);
 status InOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
+status InOrderTraverse(BinaryTreePos&T,int*key_save,int*value_save,int&size);
 status PostOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
+status PostOrderTraverse(BinaryTreePos&T, KeyType e,BiTPos&dad,int&isleft);
+status PostOrderTraverse(BinaryTreePos&T,KeyType delkey);
 status LevelOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 status LevelOrderTraverse(BinaryTreePos&T, int&keydex);
 status LevelOrderTraverse(BinaryTreePos&T, KeyType e,BiTPos&result);
+BiTPos CreateBiTree1(int* pre_start, int* pre_end, int* in_start, int* in_end, int&size);
+BiTPos CreateBiTree2(int* post_start, int* post_end, int* in_start, int* in_end, int&size);
+void CreateBiTree3(BiTPos&root, int&size,int&ch);
+void CreateBiTree4(BiTPos&root,int&size,ElemType Array[],int&count);
 void Destroy(BiTPos&root);
 status visit(BiTPos&node);
+status Show(BinaryTreePos&T);
 
 int main(int argc, char *argv[])
 {
@@ -46,6 +56,34 @@ int main(int argc, char *argv[])
 	}
 	BinaryTreePos *T = &TreeGroup[0];//T is the first tree
 	int index=0;
+	
+	//define file pointer
+	FILE *fp;
+	char writeFileName[30];
+	char readFileName[30];
+	
+	int preKeyGroup[MaxNodeSize];
+	int inKeyGroup[MaxNodeSize];
+	int preValueGroup[MaxNodeSize];
+	int inValueGroup[MaxNodeSize];
+	int*pre_key=preKeyGroup;
+	int*in_key=inKeyGroup;
+	int*pre_value=preValueGroup;
+	int*in_value=inValueGroup;
+	int pre_size=0;
+	int in_size=0;
+	int*temp=NULL;
+	
+	for(i=0;i<MaxNodeSize;i++)
+	{
+		preKeyGroup[i]=0;
+		inKeyGroup[i]=0;
+		preValueGroup[i]=0;
+		inValueGroup[i]=0;
+	}
+	
+	
+	
 	while (op)
 	{
 		system("cls");
@@ -62,8 +100,9 @@ int main(int argc, char *argv[])
 		printf("    	  13.PostOrderTraverse 14.LevelOrderTraverse\n");
 		printf("    	  15.SaveBiTree        16.LoadBiTree\n");
 		printf("          17.ChangeBiTree      0. Exit\n");
+		printf("          -1.dir               -2.Show\n");
 		printf("-------------------------------------------------\n");
-		printf("    请选择你的操作[0~17]:");
+		printf("    请选择你的操作[-2~17]:");
 		scanf("%d", &op);
 		switch (op)
 		{
@@ -365,10 +404,67 @@ int main(int argc, char *argv[])
 			printf("Your choise:15\n");
 			printf("/*\n *Function Name:SaveBiTree\n");
 			printf(" *Module:Data structures\n");
-			printf(" *Parameter:LinkList L\n");
-			printf(" *Return:status\n");
-			printf(" *Use:sort the LinearList\n*/\n");
-
+			printf(" *Use:save the BiTree as file\n*/\n");
+			if(*T==NULL)//BiTree is NULL
+			{
+				printf("*The BiTree is NULL\n");
+				getchar();
+				getchar();
+				break;
+			}
+			//save
+			printf("*FileName:");
+			scanf("%s",writeFileName);//input file name
+			if((fp=fopen(writeFileName,"wb"))==NULL)
+			{
+				printf("*File open error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			pre_key=preKeyGroup;
+			in_key=inKeyGroup;
+			pre_value=preValueGroup;
+			in_value=inValueGroup;
+			
+			if((PreOrderTraverse(*T,pre_key,pre_value,pre_size))==OK)
+			{
+				printf("*save_pre success\n");
+				*(pre_key+pre_size)=-1;
+				pre_size++;
+				for(i=0;i<pre_size;i++)
+				{
+					printf("%d,%d\t",preKeyGroup[i],preValueGroup[i]);
+				}
+				printf("\n");
+			}
+			if((InOrderTraverse(*T,in_key,in_value,in_size))==OK)
+			{
+				printf("*save_in success\n");
+				*(in_key+in_size)=-1;
+				in_size++;
+				for(i=0;i<in_size;i++)
+				{
+					printf("%d,%d\t",inKeyGroup[i],inValueGroup[i]);
+				}
+				printf("\n");
+			}
+			pre_key=preKeyGroup;
+			in_key=inKeyGroup;
+			pre_value=preValueGroup;
+			in_value=inValueGroup;
+			for(i=0;i<pre_size;i++)
+			{
+				fwrite(pre_key+i,sizeof(int),1,fp);
+				fwrite(pre_value+i,sizeof(int),1,fp);
+			}
+			for(i=0;i<in_size;i++)
+			{
+				fwrite(in_key+i,sizeof(int),1,fp);
+				fwrite(in_value+i,sizeof(int),1,fp);
+			}
+			fclose(fp);
+			printf("*Save File Success\n");
 			getchar();
 			getchar();
 			break;
@@ -376,8 +472,96 @@ int main(int argc, char *argv[])
 			printf("Your choise:16\n");
 			printf("/*\n *Function Name:LoadBiTree\n");
 			printf(" *Module:Data structures\n");
-			printf(" *Use:change the LinearList\n*/\n");
-
+			printf(" *Use:load the BiTree from a file\n*/\n");
+			
+			//load
+			printf("*FileName:");
+			scanf("%s",readFileName);//input file name
+			if((fp=fopen(readFileName,"rb"))==NULL)
+			{
+				printf("*File open error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			for(i=0;i<MaxNodeSize;i++)
+			{
+				preKeyGroup[i]=0;
+				inKeyGroup[i]=0;
+				preValueGroup[i]=0;
+				inValueGroup[i]=0;
+			}
+			pre_key=preKeyGroup;
+			in_key=inKeyGroup;
+			pre_value=preValueGroup;
+			in_value=inValueGroup;
+			i=0;
+			do
+			{
+				fread(pre_key+i,sizeof(int),1,fp);
+				fread(pre_value+i,sizeof(int),1,fp);
+				i++;
+			
+			}while(*(pre_key+i-1)!=-1);
+			printf("*pre_load success\n");
+			i=0;
+			do
+			{
+				fread(in_key+i,sizeof(int),1,fp);
+				fread(in_value+i,sizeof(int),1,fp);
+				i++;
+			
+			}while(*(in_key+i-1)!=-1);
+			printf("*in_load success\n");
+			
+			pre_size=0;
+			in_size=0;
+			i=0;
+			while(preKeyGroup[i]!=-1)
+			{
+				i++;
+				pre_size++;
+			}
+			i=0;
+			while(inKeyGroup[i]!=-1)
+			{
+				i++;
+				in_size++;
+			}
+			for(i=0;i<pre_size;i++)
+			{
+				printf("%d,%d\t",preKeyGroup[i],preValueGroup[i]);
+			}
+			
+			printf("\n");
+			printf("*Load Success\n");
+			fclose(fp);
+			if(*T)
+			{
+				DestroyBiTree(*T);
+				printf("*Destroy Tree\n");
+			}
+			*T=(BinaryTreePos)malloc(sizeof(BinaryTree));
+			(*T)->size=0;
+			(*T)->id=index;
+			(*T)->root=NULL;
+			(*T)->root=CreateBiTree1(pre_key,&preKeyGroup[pre_size-1],in_key,&inKeyGroup[in_size-1],(*T)->size);
+			if((*T)->root)
+			{
+				if(PreOrderTraverse(*T,preValueGroup)==OK)
+				{
+					printf("*Assign Value Success\n");
+				}
+				else
+				{
+					printf("*Assign Value Error\n");
+				}
+				printf("*Create Success\n");
+			}
+			else
+			{
+				printf("*Create Error\n");
+			}
 			getchar();
 			getchar();
 			break;
@@ -385,10 +569,21 @@ int main(int argc, char *argv[])
 			printf("Your choise:17\n");
 			printf("/*\n *Function Name:ChangeBiTree\n");
 			printf(" *Module:Data structures\n");
-			printf(" *Parameter:LinkList La,LinkList Lb,Linklist Lc\n");
-			printf(" *Return:status\n");
-			printf(" *Use:merge two LinearList as new one\n*/\n");
-
+			printf(" *Use:chage BiTree\n*/\n");
+			printf("*Index:");
+			scanf("%d",&index);
+			T=&TreeGroup[index];
+			printf("*Change Success\n");	
+			getchar();
+			getchar();
+			break;
+		case -1:
+			system("dir");
+			getchar();
+			getchar();
+			break;
+		case -2:
+			Show(*T);
 			getchar();
 			getchar();
 			break;

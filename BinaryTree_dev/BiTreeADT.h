@@ -64,7 +64,10 @@ BiTPos GetSibling(BinaryTreePos&T, KeyType e);
 status InsertNode(BinaryTreePos&T, KeyType e, int LR, BiTPos&c);
 status DeleteNode(BinaryTreePos&T, KeyType e);
 status PreOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
+status PreOrderTraverse(BinaryTreePos&T, int*key_save,int*value_save,int&size);
+status PreOrderTraverse(BinaryTreePos&T, int*value);
 status InOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
+status InOrderTraverse(BinaryTreePos&T,int*key_save,int*value_save,int&size);
 status PostOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node));
 status PostOrderTraverse(BinaryTreePos&T, KeyType e,BiTPos&dad,int&isleft);
 status PostOrderTraverse(BinaryTreePos&T,KeyType delkey);
@@ -77,7 +80,7 @@ void CreateBiTree3(BiTPos&root, int&size,int&ch);
 void CreateBiTree4(BiTPos&root,int&size,ElemType Array[],int&count);
 void Destroy(BiTPos&root);
 status visit(BiTPos&node);
-
+status Show(BinaryTreePos&T);
 
 
 
@@ -401,21 +404,41 @@ BiTPos GetSibling(BinaryTreePos&T, KeyType e)
 	BiTPos target=LocateNode(T,e);
 	if(target!=NULL)
 	{
-		if(target->lchild!=NULL)
+		BiTPos dad=NULL;
+		int IsLeft=0;
+		if(PostOrderTraverse(T,e,dad,IsLeft)==ERROR)
 		{
-			printf("*have left child\n");
-			return target->lchild;
-		}
-		else if(target->rchild!=NULL)
-		{
-			printf("*don't have left child\n");
-			printf("*have right child\n");
-			return target->rchild;
+			printf("*don't find father\n");
+			return NULL;
 		}
 		else
 		{
-			printf("*don't have child\n");
-			return NULL;
+			if(IsLeft)
+			{
+				if(dad->rchild)
+				{
+					printf("*have right brother\n");
+					return dad->rchild;
+				}
+				else
+				{
+					printf("*have no brother\n");
+					return NULL;
+				}
+			}
+			else
+			{
+				if(dad->lchild)
+				{
+					printf("*have left brother\n");
+					return dad->lchild;
+				}
+				else
+				{
+					printf("*have no brother\n");
+					return NULL;
+				}
+			}
 		}
 	}
 	else
@@ -676,7 +699,7 @@ status DeleteNode(BinaryTreePos&T, KeyType e)
 		}
 		return OK;
 	}
-	else 
+	else 	
 		return ERROR;
 	
 }
@@ -710,6 +733,76 @@ status PreOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node))
 	return OK;
 }
 
+
+status PreOrderTraverse(BinaryTreePos&T, int*key_save,int*value_save,int&size)
+{
+	int i=0;
+	if(T==NULL)
+	{
+		printf("*The BiTree is null\n");
+		return ERROR;
+	}
+	if (T->root == NULL)
+	{
+		printf("*The BiTree is Empty\n");
+		return ERROR;
+	}
+	SqStack S;//Create a Stack
+	InitStack(S);
+	BiTPos p;
+	Push(S, T->root);//push root
+	while (!StackEmpty(S))
+	{
+		Pop(S, p);
+		//if (!visit(p))return ERROR;//visit
+		*(key_save+i)=p->index;
+		*(value_save+i)=p->value;
+		i++;
+		if (p->rchild != NULL)
+			Push(S, p->rchild);
+		if (p->lchild != NULL)
+			Push(S, p->lchild);
+	}//end of while
+	size=i;
+	printf("*PreOderTravel Success\n");
+	return OK;
+}
+
+status PreOrderTraverse(BinaryTreePos&T, int*value)
+{
+	int i=0;
+	if(T==NULL)
+	{
+		printf("*The BiTree is null\n");
+		return ERROR;
+	}
+	if (T->root == NULL)
+	{
+		printf("*The BiTree is Empty\n");
+		return ERROR;
+	}
+	SqStack S;//Create a Stack
+	InitStack(S);
+	BiTPos p;
+	Push(S, T->root);//push root
+	while (!StackEmpty(S))
+	{
+		Pop(S, p);
+		//if (!visit(p))return ERROR;//visit
+		p->value=*(value+i++);
+		if (p->rchild != NULL)
+			Push(S, p->rchild);
+		if (p->lchild != NULL)
+			Push(S, p->lchild);
+	}//end of while
+	printf("*PreOderTravel Success\n");
+	return OK;
+}
+
+
+
+
+
 status InOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node))
 {
 	if(T==NULL)
@@ -742,6 +835,53 @@ status InOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node))
 	printf("*InOderTravel Success\n");
 	return OK;
 }
+
+
+status InOrderTraverse(BinaryTreePos&T,int*key_save,int*value_save,int&size)
+{
+	int i=0;
+	if(T==NULL)
+	{
+		printf("*The BiTree is null\n");
+		return ERROR;
+	}
+	if (T->root == NULL)
+	{
+		printf("*The BiTree is Empty\n");
+		return ERROR;
+	}
+	SqStack S;//Create a Stack
+	InitStack(S);
+	BiTPos p = T->root;
+	while (p || !StackEmpty(S))
+	{
+		if (p)
+		{
+			Push(S, p);
+			p = p->lchild;//push root,search left tree
+		}
+		else
+		{
+			Pop(S, p);
+			//if (!visit(p))return ERROR;//visit
+			*(key_save+i)=p->index;
+			*(value_save+i)=p->value;
+			i++;
+			p = p->rchild;
+		}//end of else
+	}//end of while
+	size=i;
+	printf("*InOderTravel Success\n");
+	return OK;
+}
+
+
+
+
+
+
+
+
 
 status PostOrderTraverse(BinaryTreePos&T, status(*visit)(BiTPos&node))
 {
@@ -1328,8 +1468,65 @@ status Pop(SqStack&S, SElemType&e)
 }//Pop
 
 
-
-
+status Show(BinaryTreePos&T)
+{
+	if(T==NULL)
+	{
+		printf("*The BiTree is null\n");
+		return ERROR;
+	}
+	BiTPos Qe[MaxSize];
+	int rear=0;
+	int head=0;
+	int Depth=BiTreeDepth(T->root);
+	int preDepth=1;
+	int nowDepth=1;
+	int i=0;
+	int j=0;
+	
+	int printList[MaxSize];
+	Qe[rear++]=T->root;
+	printList[i++]=T->root->index;
+	int posh=1;
+	for(j=0;j<Depth;j++)
+		posh*=2;
+	posh--;
+	j=0;
+	while(rear!=head&&i<=posh)
+	{
+		if(Qe[head]->lchild)
+		{
+			printList[i++]=Qe[head]->lchild->index;
+		}
+		else
+		{
+			Qe[head]->lchild=(BiTPos)malloc(sizeof(BiTNode));
+			Qe[head]->lchild->index=-1;
+			Qe[head]->lchild->lchild=NULL;
+			Qe[head]->lchild->rchild=NULL;
+			printList[i++]=-1;
+		}
+		Qe[rear++]=Qe[head]->lchild;
+		if(Qe[head]->rchild)
+		{
+			printList[i++]=Qe[head]->rchild->index;
+		}
+		else
+		{
+			Qe[head]->rchild=(BiTPos)malloc(sizeof(BiTNode));
+			Qe[head]->rchild->index=-1;
+			Qe[head]->rchild->lchild=NULL;
+			Qe[head]->rchild->rchild=NULL;
+			printList[i++]=-1;
+		}
+		Qe[rear++]=Qe[head]->rchild;
+		head++;
+	}
+	for(j=0;j<i;j++)
+	{
+		printf("%d, ",printList[j]);
+	} 
+}
 
 
 

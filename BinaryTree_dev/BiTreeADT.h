@@ -81,8 +81,8 @@ void CreateBiTree4(BiTPos&root,int&size,ElemType Array[],int&count);
 void Destroy(BiTPos&root);
 status visit(BiTPos&node);
 status Show(BinaryTreePos&T);
-
-
+int power(int d,int p);
+void print_(int num);
 
 
 
@@ -1522,14 +1522,76 @@ status Show(BinaryTreePos&T)
 		Qe[rear++]=Qe[head]->rchild;
 		head++;
 	}
-	for(j=0;j<i;j++)
+	/*for(j=0;j<i;j++)
 	{
 		printf("%d, ",printList[j]);
-	} 
+	} */
+	int k=0;
+	for(i=1;i<=Depth;i++)
+	{
+		//print_(10);
+		if(i==1)
+		{
+			print_(power(2,Depth+1-i)-1);
+			if(printList[k]==-1)
+			{
+				printf("-");
+				k++;
+			}
+			else
+				printf("%d",printList[k++]);
+			print_(power(2,Depth+1-i)-1);
+			//print_(10);
+			printf("\n");	
+		}
+		else
+		{
+			print_(power(2,Depth+1-i)-1);
+			for(j=0;j<power(2,i-1)-1;j++)
+			{
+				if(printList[k]==-1)
+				{
+					printf("-");
+					k++;
+				}
+				else
+					printf("%d",printList[k++]);
+				print_((power(2,Depth+1)-power(2,Depth-i+2)-1)/(power(2,i-1)-1));
+			}
+			if(printList[k]==-1)
+			{
+				printf("-");
+				k++;
+			}
+			else
+				printf("%d",printList[k++]);
+			print_(power(2,Depth-i+1)-1);
+			//print_(10);
+			printf("\n");
+		}
+		print_(power(2,Depth+1)-1);
+		printf("\n");
+		
+	}
 }
 
+int power(int d,int p)
+{
+	int i=0;
+	int temp=d;
+	for(i=0;i<p-1;i++)
+		d*=temp;
+	return d;
+}
 
-
+void print_(int num)
+{
+	int i=0;
+	for(i=0;i<num;i++)
+	{
+		printf("-");
+	}
+}
 
 
 

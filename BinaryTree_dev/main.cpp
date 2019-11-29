@@ -34,6 +34,10 @@ void CreateBiTree4(BiTPos&root,int&size,ElemType Array[],int&count);
 void Destroy(BiTPos&root);
 status visit(BiTPos&node);
 status Show(BinaryTreePos&T);
+int power(int d,int p);
+void print_(int num);
+
+
 
 int main(int argc, char *argv[])
 {
@@ -61,6 +65,7 @@ int main(int argc, char *argv[])
 	FILE *fp;
 	char writeFileName[30];
 	char readFileName[30];
+	char tempFileName[30]="Temp_Tree";
 	
 	int preKeyGroup[MaxNodeSize];
 	int inKeyGroup[MaxNodeSize];
@@ -101,8 +106,9 @@ int main(int argc, char *argv[])
 		printf("    	  15.SaveBiTree        16.LoadBiTree\n");
 		printf("          17.ChangeBiTree      0. Exit\n");
 		printf("          -1.dir               -2.Show\n");
+		printf("          -3.Open another menu -4.Find\n");
 		printf("-------------------------------------------------\n");
-		printf("    请选择你的操作[-2~17]:");
+		printf("    请选择你的操作[-4~17]:");
 		scanf("%d", &op);
 		switch (op)
 		{
@@ -583,7 +589,164 @@ int main(int argc, char *argv[])
 			getchar();
 			break;
 		case -2:
+			
+			if((fp=fopen(tempFileName,"wb"))==NULL)
+			{
+				printf("*File open error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			pre_key=preKeyGroup;
+			in_key=inKeyGroup;
+			pre_value=preValueGroup;
+			in_value=inValueGroup;
+			
+			if((PreOrderTraverse(*T,pre_key,pre_value,pre_size))==OK)
+			{
+				//printf("*save_pre success\n");
+				*(pre_key+pre_size)=-1;
+				pre_size++;
+				/*for(i=0;i<pre_size;i++)
+				{
+					printf("%d,%d\t",preKeyGroup[i],preValueGroup[i]);
+				}
+				printf("\n");*/
+			}
+			if((InOrderTraverse(*T,in_key,in_value,in_size))==OK)
+			{
+				//printf("*save_in success\n");
+				*(in_key+in_size)=-1;
+				in_size++;
+				/*for(i=0;i<in_size;i++)
+				{
+					printf("%d,%d\t",inKeyGroup[i],inValueGroup[i]);
+				}
+				printf("\n");*/
+			}
+			pre_key=preKeyGroup;
+			in_key=inKeyGroup;
+			pre_value=preValueGroup;
+			in_value=inValueGroup;
+			for(i=0;i<pre_size;i++)
+			{
+				fwrite(pre_key+i,sizeof(int),1,fp);
+				fwrite(pre_value+i,sizeof(int),1,fp);
+			}
+			for(i=0;i<in_size;i++)
+			{
+				fwrite(in_key+i,sizeof(int),1,fp);
+				fwrite(in_value+i,sizeof(int),1,fp);
+			}
+			fclose(fp);
+			//printf("*Save File Success\n");
+			
+			
+			
 			Show(*T);
+			
+			
+			
+			
+			if((fp=fopen(tempFileName,"rb"))==NULL)
+			{
+				printf("*File open error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			for(i=0;i<MaxNodeSize;i++)
+			{
+				preKeyGroup[i]=0;
+				inKeyGroup[i]=0;
+				preValueGroup[i]=0;
+				inValueGroup[i]=0;
+			}
+			pre_key=preKeyGroup;
+			in_key=inKeyGroup;
+			pre_value=preValueGroup;
+			in_value=inValueGroup;
+			i=0;
+			do
+			{
+				fread(pre_key+i,sizeof(int),1,fp);
+				fread(pre_value+i,sizeof(int),1,fp);
+				i++;
+			
+			}while(*(pre_key+i-1)!=-1);
+			//printf("*pre_load success\n");
+			i=0;
+			do
+			{
+				fread(in_key+i,sizeof(int),1,fp);
+				fread(in_value+i,sizeof(int),1,fp);
+				i++;
+			
+			}while(*(in_key+i-1)!=-1);
+			//printf("*in_load success\n");
+			
+			pre_size=0;
+			in_size=0;
+			i=0;
+			while(preKeyGroup[i]!=-1)
+			{
+				i++;
+				pre_size++;
+			}
+			i=0;
+			while(inKeyGroup[i]!=-1)
+			{
+				i++;
+				in_size++;
+			}
+			/*for(i=0;i<pre_size;i++)
+			{
+				printf("%d,%d\t",preKeyGroup[i],preValueGroup[i]);
+			}
+			
+			printf("\n");*/
+			//printf("*Load Success\n");
+			fclose(fp);
+			if(*T)
+			{
+				DestroyBiTree(*T);
+				//printf("*Destroy Tree\n");
+			}
+			*T=(BinaryTreePos)malloc(sizeof(BinaryTree));
+			(*T)->size=0;
+			(*T)->id=index;
+			(*T)->root=NULL;
+			(*T)->root=CreateBiTree1(pre_key,&preKeyGroup[pre_size-1],in_key,&inKeyGroup[in_size-1],(*T)->size);
+			if((*T)->root)
+			{
+				if(PreOrderTraverse(*T,preValueGroup)==OK)
+				{
+					//printf("*Assign Value Success\n");
+				}
+				else
+				{
+					printf("*Assign Value Error\n");
+				}
+				//printf("*Create Success\n");
+			}
+			else
+			{
+				printf("*Create Error\n");
+			}
+			
+			
+			
+			getchar();
+			getchar();
+			break;
+		case -3:
+			system("start");
+			getchar();
+			getchar();
+			break;
+		case -4:
+			//system("BinaryTree_dev.dev");
+			system("for /r c:\\Users\\SKTT1Ryze\\Desktop\\DataStructure_Code\\BinaryTree_dev %i in (*Tree_0*) do @echo %i");
 			getchar();
 			getchar();
 			break;

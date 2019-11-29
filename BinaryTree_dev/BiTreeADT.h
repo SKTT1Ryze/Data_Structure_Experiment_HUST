@@ -1539,7 +1539,8 @@ status Show(BinaryTreePos&T)
 				k++;
 			}
 			else
-				printf("%d",printList[k++]);
+				//printf("%d",printList[k++]);
+				printf("\033[30;31m%d\033[0m",printList[k++]);
 			print_(power(2,Depth+1-i)-1);
 			//print_(10);
 			printf("\n");	
@@ -1555,7 +1556,8 @@ status Show(BinaryTreePos&T)
 					k++;
 				}
 				else
-					printf("%d",printList[k++]);
+					//printf("%d",printList[k++]);
+					printf("\033[30;31m%d\033[0m",printList[k++]);
 				print_((power(2,Depth+1)-power(2,Depth-i+2)-1)/(power(2,i-1)-1));
 			}
 			if(printList[k]==-1)
@@ -1564,7 +1566,8 @@ status Show(BinaryTreePos&T)
 				k++;
 			}
 			else
-				printf("%d",printList[k++]);
+				//printf("%d",printList[k++]);
+				printf("\033[30;31m%d\033[0m",printList[k++]);
 			print_(power(2,Depth-i+1)-1);
 			//print_(10);
 			printf("\n");

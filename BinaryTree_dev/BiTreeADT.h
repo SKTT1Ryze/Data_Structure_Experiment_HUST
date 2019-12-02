@@ -1535,7 +1535,7 @@ status Show(BinaryTreePos&T)
 			print_(power(2,Depth+1-i)-1);
 			if(printList[k]==-1)
 			{
-				printf("-");
+				printf("=");
 				k++;
 			}
 			else
@@ -1552,7 +1552,7 @@ status Show(BinaryTreePos&T)
 			{
 				if(printList[k]==-1)
 				{
-					printf("-");
+					printf("=");
 					k++;
 				}
 				else
@@ -1562,7 +1562,7 @@ status Show(BinaryTreePos&T)
 			}
 			if(printList[k]==-1)
 			{
-				printf("-");
+				printf("=");
 				k++;
 			}
 			else
@@ -1592,7 +1592,7 @@ void print_(int num)
 	int i=0;
 	for(i=0;i<num;i++)
 	{
-		printf("-");
+		printf("=");
 	}
 }
 

@@ -15,7 +15,20 @@
 //Functions Declaration
 status CreateGraph(GPos&G, int*vex, int*vex_arc);
 status DestroyGraph(GPos&G);
+int LocateVex(GPos&G, int u);
+status PutVex(GPos&G, int u, ElemType value);
+int FirstAdjVex(GPos&G, int u);
+int NextAdjVex(GPos&G, int v, int w);
+status InsertVex(GPos&G, vexnode*v);
+status DeleteVex(GPos&G, int v);
+status InsertArc(GPos&G, int v, int w);
+status DeleteArc(GPos&G, int v, int w);
+status DFSTraverse(GPos&G, void(*visit)(vexnode*vex));
+status BFSTraverse(GPos&G, void(*visit)(vexnode*vex));
+status print_AdjList(GPos&G);
 void DeleteLink(arcnode*head);
+void DFS(GPos&G, vexnode*vex, void(*visit)(vexnode*vex));
+void visit(vexnode*vex);
 
 
 
@@ -50,6 +63,12 @@ int main(int argc,char *argv[])
 	for (i = 0; i < max_arc; i++)
 		vex_arc[i] = 0;
 
+	int u = 0;
+	int v = 0;
+	int w = 0;
+	int location = 0;
+	int input_value = 0;
+	vexnode*vexnode_temp = NULL;
 	while (op)
 	{
 		system("cls");
@@ -63,8 +82,8 @@ int main(int argc,char *argv[])
 		printf("    	  7. InsertVex        8. DeleteVex\n");
 		printf("    	  9. InsertArc        10. DeleteArc\n");
 		printf("    	  11. DFSTraverse     12. BFSTraverse\n");
-		printf("    	  13.save             14.load\n");
-		printf("    	  15.                 16.      \n");
+		printf("    	  13. save            14. load\n");
+		printf("    	  15. print_AdjList   16.      \n");
 		printf("          17.                 0. Exit\n");
 		printf("          -1.dir\n");
 		printf("-------------------------------------------------\n");
@@ -155,7 +174,17 @@ int main(int argc,char *argv[])
 			printf("/*\n *Function Name:LocateVex\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:locate the vex node\n*/\n");
-			
+			printf("*input u:");
+			scanf_s("%d", &u);
+			if (u <= 0)
+			{
+				printf("*input error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			location = LocateVex(*G, u);
+			printf("*Location:%d\n", location);
 			getchar();
 			getchar();
 			break;
@@ -164,7 +193,25 @@ int main(int argc,char *argv[])
 			printf("/*\n *Function Name:PutVex\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:Assign the value of the vex node\n*/\n");
-			
+			printf("*input u:");
+			scanf_s("%d", &u);
+			if (u <= 0)
+			{
+				printf("*input error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			printf("*input value:");
+			scanf_s("%d", &input_value);
+			if (PutVex(*G, u, input_value) == OK)
+			{
+				printf("*Operator Success\n");
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;
@@ -173,7 +220,17 @@ int main(int argc,char *argv[])
 			printf("/*\n *Function Name:FirstAdjVex\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:return first adjvex of the vex node\n*/\n");
-		
+			printf("*input u:");
+			scanf_s("%d", &u);
+			if (u <= 0)
+			{
+				printf("*input error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			location = LocateVex(*G, u);
+			printf("*Location:%d\n", location);
 			getchar();
 			getchar();
 			break;
@@ -182,7 +239,26 @@ int main(int argc,char *argv[])
 			printf("/*\n *Function Name:NextAdjVex\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:get the next adjvex\n*/\n");
-			
+			printf("*input v:");
+			scanf_s("%d", &v);
+			if (v <= 0)
+			{
+				printf("*input error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			printf("*input w:");
+			scanf_s("%d", &w);
+			if (w <= 0)
+			{
+				printf("*input error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			location = NextAdjVex(*G, v, w);
+			printf("*Location:%d\n", location);
 			getchar();
 			getchar();
 			break;
@@ -191,7 +267,28 @@ int main(int argc,char *argv[])
 			printf("/*\n *Function Name:InsertVex\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:Insert a vex node\n");
-			
+			vexnode_temp = (vexnode*)malloc(sizeof(vexnode));
+			if (vexnode_temp == NULL)
+			{
+				printf("*overflow\n");
+				exit(OVERFLOW);
+			}
+			vexnode_temp->first_arc = NULL;
+			vexnode_temp->index = 0;
+			vexnode_temp->nextvex = NULL;
+			vexnode_temp->value = 0;
+			printf("*input index:");
+			scanf_s("%d", &(vexnode_temp->index));
+			printf("*input value:");
+			scanf_s("%d", &(vexnode_temp->value));
+			if (InsertVex(*G, vexnode_temp) == OK)
+			{
+				printf("*Operatoe Success\n");
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;
@@ -200,7 +297,23 @@ int main(int argc,char *argv[])
 			printf("/*\n *Function Name:DeleteVex\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:Delete a vex node\n*/\n");
-			
+			printf("*input v:");
+			scanf_s("%d", &v);
+			if (v <= 0)
+			{
+				printf("*input error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			if (DeleteVex(*G, v) == OK)
+			{
+				printf("*Operator Success\n");
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;
@@ -209,7 +322,32 @@ int main(int argc,char *argv[])
 			printf("/*\n *Function Name:InsertArc\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:Insert an arc node\n*/\n");
-			
+			printf("*input v:");
+			scanf_s("%d", &v);
+			if (v <= 0)
+			{
+				printf("*input error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			printf("*input w:");
+			scanf_s("%d", &w);
+			if (w <= 0)
+			{
+				printf("*input error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			if (InsertArc(*G, v, w) == OK)
+			{
+				printf("*Operator Success\n");
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;
@@ -218,7 +356,32 @@ int main(int argc,char *argv[])
 			printf("/*\n *Function Name:DeleteArc\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:Delete an arc node\n*/\n");
-			
+			printf("*input v:");
+			scanf_s("%d", &v);
+			if (v <= 0)
+			{
+				printf("*input error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			printf("*input w:");
+			scanf_s("%d", &w);
+			if (w <= 0)
+			{
+				printf("*input error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			if (DeleteArc(*G, v, w) == OK)
+			{
+				printf("*Operator Success\n");
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;
@@ -227,7 +390,14 @@ int main(int argc,char *argv[])
 			printf("/*\n *Function Name:DFSTraverse\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:Travel the Graph in DFS order\n*/\n");
-			
+			if (DFSTraverse(*G, visit) == OK)
+			{
+				printf("*Operator Success\n");
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;
@@ -236,7 +406,14 @@ int main(int argc,char *argv[])
 			printf("/*\n *Function Name:BFSTraverse\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:Travle the Graph in BFS order\n*/\n");
-			
+			if (BFSTraverse(*G, visit) == OK)
+			{
+				printf("*Operator Success\n");
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;
@@ -263,12 +440,17 @@ int main(int argc,char *argv[])
 			break;
 		case 15:
 			printf("Your choise:15\n");
-			printf("/*\n *Function Name:ListSort\n");
+			printf("/*\n *Function Name:print_AdjList\n");
 			printf(" *Module:Data structures\n");
-			printf(" *Parameter:LinkList L\n");
-			printf(" *Return:status\n");
-			printf(" *Use:sort the LinearList\n*/\n");
-			
+			printf(" *Use:print the AdjList\n*/\n");
+			if (print_AdjList(*G) == OK)
+			{
+				printf("*Operator Success\n");
+			}
+			else
+			{
+				printf("*Operator Error\n");
+			}
 			getchar();
 			getchar();
 			break;

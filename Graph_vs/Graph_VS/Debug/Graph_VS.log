@@ -1,2 +1,126 @@
 ﻿  Graph_VS.cpp
-  Graph_VS.vcxproj -> c:\Users\SKTT1Ryze\Desktop\DataStructure_Code\Graph_vs\Debug\Graph_VS.exe
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(16): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(16): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(31): error C2378: “vexnode”: 重定义；符号不能由 typedef 重载
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(16): note: 参见“vexnode”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(36): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(36): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(36): error C2238: 意外的标记位于“;”之前
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(48): error C2061: 语法错误: 标识符“vexnode”
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(52): error C2143: 语法错误: 缺少“)”(在“(”的前面)
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(52): error C2065: “vex”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(52): error C2206: “DFSTraverse”: typedef 不能用于函数定义
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(52): error C2059: 语法错误:“)”
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(53): error C2143: 语法错误: 缺少“)”(在“(”的前面)
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(53): error C2065: “vex”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(53): error C2206: “BFSTraverse”: typedef 不能用于函数定义
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(53): error C2059: 语法错误:“)”
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(56): error C2061: 语法错误: 标识符“vexnode”
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(57): error C2065: “vex”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(57): error C2182: “visit”: 非法使用“void”类型
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(68): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(77): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(78): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(104): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(104): error C2059: 语法错误:“)”
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(105): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(110): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(111): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(112): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(113): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(114): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(114): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(115): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(115): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(118): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(118): error C2059: 语法错误:“)”
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(119): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(124): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(125): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(126): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(127): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(128): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(128): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(129): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(131): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(131): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(132): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(134): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(134): warning C4473: “printf”: 没有为格式字符串传递足够的参数
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(134): note: 占位符和其参数预计 2 可变参数，但提供的却是 0 参数
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(134): note: 缺失的可变参数 1 为格式字符串“%d”所需
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(135): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(145): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(145): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(146): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(147): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(148): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(153): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(156): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(157): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(162): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(163): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(164): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(169): error C2065: “vex_travel”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(198): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(203): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(203): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(204): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(206): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(207): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(208): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(210): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(210): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(211): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(214): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(214): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(215): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(216): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(216): error C2065: “vex_temp”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(217): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(218): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(231): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(237): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(237): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(238): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(240): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(243): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(260): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(265): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(265): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(266): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(267): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(268): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(274): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(287): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(292): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(292): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(293): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(294): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(295): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(301): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(306): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(307): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(307): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(309): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(311): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(314): error C2065: “vex_pos”: 未声明的标识符
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(331): error C2039: “first_vex”: 不是“Graph”的成员
+  c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(33): note: 参见“Graph”的声明
+c:\users\sktt1ryze\desktop\datastructure_code\graph_vs\graph_vs\graphadt.h(331): fatal error C1003: 错误计数超过 100；正在停止编译

@@ -465,6 +465,7 @@ status DeleteVex(GPos&G, int v)
 					free(arc_pos);
 					arc_pos = arc_pre->nextarc;
 				}
+				continue;
 			}
 			arc_pre = arc_pos;
 			arc_pos = arc_pos->nextarc;

@@ -228,7 +228,7 @@ int main(int argc,char *argv[])
 				getchar();
 				break;
 			}
-			location = LocateVex(*G, u);
+			location = FirstAdjVex(*G, u);
 			printf("*Location:%d\n", location);
 			getchar();
 			getchar();

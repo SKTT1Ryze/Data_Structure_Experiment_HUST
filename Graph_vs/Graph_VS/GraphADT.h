@@ -9,11 +9,11 @@
 #define OK 1
 #define ERROR 0
 #define INFEASTABLE -1
+#define OVERFLOW -1
 typedef int status;
 typedef int ElemType;//type of data
 
-int visited[100];
-vexnode*Queue[100];
+
 
 typedef struct ArcNode
 {
@@ -26,18 +26,20 @@ typedef struct VexNode
 {
 	int index;
 	ElemType value;
-	arcnode *first_arc;
+	struct ArcNode *first_arc;
 	struct VexNode	*nextvex;
 }vexnode;
 
 typedef struct Graph
 {
 	int id;
-	vexnode *first_vex;
+	struct VexNode *first_vex;
 	int vex_num;
 	int arc_num;
-}G,*GPos;
+}G, *GPos;
 
+int visited[100];
+vexnode*Queue[100];
 //Functions Declaration
 status CreateGraph(GPos&G, int*vex, int*vex_arc);
 status DestroyGraph(GPos&G);
@@ -54,6 +56,7 @@ status BFSTraverse(GPos&G, void(*visit)(vexnode*vex));
 status print_AdjList(GPos&G);
 void DeleteLink(arcnode*head);
 void DFS(GPos&G, vexnode*vex, void(*visit)(vexnode*vex));
+void BFS(GPos&G, void(*visit)(vexnode*vex));
 void visit(vexnode*vex);
 
 
@@ -78,7 +81,7 @@ status CreateGraph(GPos&G, int*vex, int*vex_arc)
 	vexnode* vex_travel = NULL;
 	arcnode* arc_travel = NULL;
 	arcnode* arc_temp = NULL;
-	while (pos[i++]!= -1)
+	while (pos[i++] != -1)
 	{
 		vex_num++;
 		//pos++;
@@ -348,7 +351,7 @@ int NextAdjVex(GPos&G, int v, int w)
 		return -1;
 	}
 	arcnode* arc_pos = vex_pos->first_arc;
-	while (arc_pos&&arc_pos->vex_index!=w)
+	while (arc_pos&&arc_pos->vex_index != w)
 		arc_pos = arc_pos->nextarc;
 	if (arc_pos == NULL)
 	{
@@ -422,7 +425,7 @@ status DeleteVex(GPos&G, int v)
 	printf("*Found\n");
 	DeleteLink(vex_pos->first_arc);
 	vex_pos->first_arc = NULL;
-	if (vex_pos==G->first_vex)
+	if (vex_pos == G->first_vex)
 	{
 		//the first vex node
 		printf("*the first vex node\n");
@@ -463,13 +466,14 @@ status DeleteVex(GPos&G, int v)
 					free(arc_pos);
 					arc_pos = arc_pre->nextarc;
 				}
+				continue;
 			}
 			arc_pre = arc_pos;
 			arc_pos = arc_pos->nextarc;
 		}
 		vex_pos = vex_pos->nextvex;
 
-		
+
 	}
 	printf("*Delete vex success\n");
 	return OK;
@@ -590,7 +594,7 @@ status DeleteArc(GPos&G, int v, int w)
 	return OK;
 }
 
-status DFSTraverse(GPos&G,void(*visit)(vexnode*vex))
+status DFSTraverse(GPos&G, void(*visit)(vexnode*vex))
 {
 	//Graph NULL
 	if (G == NULL)
@@ -777,4 +781,3 @@ void visit(vexnode*vex)
 {
 	printf("index:%d  value:%d\n", vex->index, vex->value);
 }
-

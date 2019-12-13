@@ -33,7 +33,7 @@ void visit(vexnode*vex);
 
 
 
-int main(int argc,char *argv[])
+int main(int argc, char *argv[])
 {
 	int op = 1;
 	int index = 0;
@@ -229,7 +229,7 @@ int main(int argc,char *argv[])
 				getchar();
 				break;
 			}
-			location = LocateVex(*G, u);
+			location = FirstAdjVex(*G, u);
 			printf("*Location:%d\n", location);
 			getchar();
 			getchar();
@@ -423,7 +423,7 @@ int main(int argc,char *argv[])
 			printf(" *Function Name:save\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:save this Graph as a file\n");
-			
+
 			getchar();
 			getchar();
 			break;
@@ -434,7 +434,7 @@ int main(int argc,char *argv[])
 			printf(" *Module:Data structures\n");
 			printf(" *Use:Load a Graph from a file\n");
 			printf("*/\n");
-			
+
 			getchar();
 			getchar();
 			break;
@@ -459,7 +459,7 @@ int main(int argc,char *argv[])
 			printf("/*\n *Function Name:ChangeList\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:change the LinearList\n*/\n");
-			
+
 			getchar();
 			getchar();
 			break;
@@ -468,14 +468,14 @@ int main(int argc,char *argv[])
 			printf("/*\n *Function Name:\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:\n*/\n");
-			
+
 			getchar();
 			getchar();
 			break;
 		case 0:
 			break;
 		case -1:
-			
+
 			getchar();
 			getchar();
 			break;
@@ -485,6 +485,3 @@ int main(int argc,char *argv[])
 	}//end of while
 
 }//end of main function
-
-
-

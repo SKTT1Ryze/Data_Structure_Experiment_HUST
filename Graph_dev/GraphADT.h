@@ -593,7 +593,7 @@ status DeleteArc(GPos&G, int v, int w)
 	return OK;
 }
 
-status DFSTraverse(GPos&G,void(*visit)(vexnode*vex))
+status DFSTraverse(GPos&G, void(*visit)(vexnode*vex))
 {
 	//Graph NULL
 	if (G == NULL)
@@ -612,18 +612,12 @@ status DFSTraverse(GPos&G,void(*visit)(vexnode*vex))
 		visited[i] = 0;
 		i++;
 	}
-	printf("*from ? vex node begin:");
-	int begin_index = 0;
-	scanf("%d", &begin_index);
 	vexnode*vex_pos = G->first_vex;
-	while (vex_pos&&vex_pos->index != begin_index)
-		vex_pos = vex_pos->nextvex;
-	if (vex_pos == NULL)
+	while (vex_pos)
 	{
-		printf("*input wrong,the vex node dont exist\n");
-		return ERROR;
+		DFS(G, vex_pos, visit);
+		vex_pos = vex_pos->nextvex;
 	}
-	DFS(G, vex_pos, visit);
 	printf("*DFS Traverse success\n");
 	return OK;
 }
@@ -705,6 +699,7 @@ void DeleteLink(arcnode*head)
 
 void DFS(GPos&G, vexnode*vex, void(*visit)(vexnode*vex))
 {
+	if (visited[vex->index] == 1)return;
 	visited[vex->index] = 1;
 	visit(vex);
 	arcnode*arc_pos = vex->first_arc;

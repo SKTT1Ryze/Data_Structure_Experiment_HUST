@@ -39,6 +39,7 @@ int main(int argc,char *argv[])
 	int vex[max_vex];
 	int vex_arc[max_arc];
 	int i = 0;
+	int j=0;
 	int vex_temp = 0;
 	int arc_temp = 0;
 	GPos GraphGroup[max_graph];
@@ -68,6 +69,18 @@ int main(int argc,char *argv[])
 	int location = 0;
 	int input_value = 0;
 	vexnode*vexnode_temp = NULL;
+
+	vexnode*vex_pos=NULL;
+	arcnode*arc_pos=NULL;
+	//file variables
+	FILE *fp;
+	char writeFileName[30];
+	char readFileName[30];
+        //saved data
+	int vex_save[max_vex];
+	int arc_save[max_arc];
+	int vex_read[max_vex];
+	int arc_read[max_arc];
 	while (op)
 	{
 		system("cls");
@@ -82,8 +95,8 @@ int main(int argc,char *argv[])
 		printf("    	  9. InsertArc        10. DeleteArc\n");
 		printf("    	  11. DFSTraverse     12. BFSTraverse\n");
 		printf("    	  13. save            14. load\n");
-		printf("    	  15. print_AdjList   16.      \n");
-		printf("          17.                 0. Exit\n");
+		printf("    	  15. print_AdjList   16. changeGraph\n");
+		printf("          17. clear           0. Exit\n");
 		printf("          -1.dir\n");
 		printf("-------------------------------------------------\n");
 		printf("    ÇëÑ¡ÔñÄãµÄ²Ù×÷[-1~17]:");
@@ -422,7 +435,73 @@ int main(int argc,char *argv[])
 			printf(" *Function Name:save\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:save this Graph as a file\n");
-			
+			if((*G)->first_vex==NULL)
+			{
+				printf("*The Graph is null\n");
+				getchar();
+				getchar();
+				break;
+			}
+			for(i=0;i<max_vex;i++)
+			{
+				vex_save[i]=-1;
+			}
+			for(i=0;i<max_arc;i++)
+			{
+				arc_save[i]=-1;
+			}
+			printf("*file name:");
+			scanf("%s",writeFileName);
+			if((fp=fopen(writeFileName,"wb"))==NULL)
+			{
+				printf("*File open error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			i=0;
+			j=0;
+			vex_pos=(*G)->first_vex;
+			arc_pos=NULL;
+			while(vex_pos)
+			{
+				vex_save[i]=vex_pos->index;
+				i++;
+				arc_pos=vex_pos->first_arc;
+				while(arc_pos)
+				{
+					arc_save[j]=vex_pos->index;
+					arc_save[j+1]=arc_pos->vex_index;
+					j+=2;
+					arc_pos=arc_pos->nextarc;
+				}
+				vex_pos=vex_pos->nextvex;
+			}
+			i=0;
+			while(vex_save[i]!=-1)printf("%d\t",vex_save[i++]);
+			printf("\n");
+			j=0;
+			while(arc_save[j]!=-1)
+			{
+				printf("%d,%d\t",arc_save[j],arc_save[i+1]);
+				j+=2;
+			}
+			i=0;
+			while(vex_save[i]!=-1)
+			{
+				fwrite(vex_save+i,sizeof(int),1,fp);
+				i++;
+			}
+			fwrite(vex_save+i,sizeof(int),1,fp);
+			j=0;
+			while(arc_save[j]!=-1)
+			{
+				fwrite(arc_save+j,sizeof(int),1,fp);
+				j++;
+			}
+			fwrite(arc_save+j,sizeof(int),1,fp);
+			printf("*write success\n");
+			fclose(fp);
 			getchar();
 			getchar();
 			break;
@@ -433,7 +512,55 @@ int main(int argc,char *argv[])
 			printf(" *Module:Data structures\n");
 			printf(" *Use:Load a Graph from a file\n");
 			printf("*/\n");
-			
+			printf("*FileName:");
+			scanf("%s",readFileName);
+			if((fp=fopen(readFileName,"rb"))==NULL)
+			{
+				printf("*File open error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			for(i=0;i<max_vex;i++)
+			{
+				vex_read[i]=0;
+			}
+			for(i=0;i>max_arc;i++)
+			{
+				arc_read[i]=0;
+			}
+			i=0;
+			do
+			{
+				fread(vex_read+i,sizeof(int),1,fp);
+				i++;
+			}while(vex_read[i-1]!=-1);
+			printf("*load vex success\n");
+			j=0;
+			do
+			{
+				fread(arc_read+j,sizeof(int),1,fp);
+				j++;
+			}while(arc_read[j-1]!=-1);
+			printf("*load arc success\n");
+			i=0;
+			while(vex_read[i]!=-1)printf("%d\n",vex_read[i++]);
+			printf("\n");
+			j=0;
+			while(arc_read[j]!=-1)
+			{
+				printf("%d,%d\t",arc_read[j],arc_read[j+1]);
+				j+=2;
+			}
+			printf("\n");
+			if(CreateGraph(*G,vex_read,arc_read)==OK)
+			{
+				printf("*Read Success\n");
+			}
+			else
+			{
+				printf("*Read Error\n");
+			}
 			getchar();
 			getchar();
 			break;
@@ -455,10 +582,20 @@ int main(int argc,char *argv[])
 			break;
 		case 16:
 			printf("Your choise:16\n");
-			printf("/*\n *Function Name:ChangeList\n");
+			printf("/*\n *Function Name:ChangeGraph\n");
 			printf(" *Module:Data structures\n");
-			printf(" *Use:change the LinearList\n*/\n");
-			
+			printf(" *Use:change the Graph\n*/\n");
+			printf("index:");
+			scanf("%d",&index);
+			if(index<0||index>=max_graph)
+			{
+				printf("*input error\n");
+				getchar();
+				getchar();
+				break;
+			}
+			G=&GraphGroup[index];
+			printf("*change success\n");
 			getchar();
 			getchar();
 			break;
@@ -467,14 +604,14 @@ int main(int argc,char *argv[])
 			printf("/*\n *Function Name:\n");
 			printf(" *Module:Data structures\n");
 			printf(" *Use:\n*/\n");
-			
+			system("clear");
 			getchar();
 			getchar();
 			break;
 		case 0:
 			break;
 		case -1:
-			
+			system("ls");
 			getchar();
 			getchar();
 			break;
